@@ -76,17 +76,17 @@ exchange_markets[''] = 'SG_USDT';
 
 
 // Screen orientation (offset in degrees)
-var orient_screen = 0; // Normal = 0, Flipped = 180, Sideways = 90 or 270
+var orient_screen = 180; // Normal = 0, Flipped = 180, Sideways = 90 or 270
 
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 36; // Default = 36, 60= 3.5" lcd
+var vertical_position = 40; // Default = 36, 40= 3.5" lcd
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var horizontal_position = 10; // Default = 10, 5= 3.5" LCD
+var horizontal_position = 0; // Default = 10, 0= 3.5" LCD
 
 
 // Slideshow transition speed IN SECONDS (can be decimals)
@@ -116,7 +116,7 @@ var max_ticker_decimals = 7; // Default = 7
 
 
 // 24 hour volume font size
-var volume_size = 40; // Default = 40, 30= 3.5" lcd
+var volume_size = 35; // Default = 40, 35= 3.5" lcd
 
 
 // Hide volume section, IF NO VOLUME WAS PROVIDED
