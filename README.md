@@ -1,7 +1,7 @@
 # btcticker
 https://github.com/taoteh1221/Slideshow_Crypto_Ticker
 
-    git clone https://github.com/dongodao/btcticker.git
+    git clone https://github.com/dongodao/slideshow-crypto-ticker.git
     
     cp btcticker/config.js slideshow-crypto-ticker/.
     
