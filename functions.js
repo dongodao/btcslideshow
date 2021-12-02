@@ -145,7 +145,7 @@ arrow_border_width = Math.round(arrow_width / 2);
 // Arrow height
 $("div.arrow_wrapper").css({ "height": arrow_height + "px" });
 $("span.buy").css({ "border-bottom": arrow_height + "px solid rgb(105, 199, 115)" });
-$("span.sell").css({ "border-top": arrow_height + "px solid rgb(199, 105, 105)" });
+$("span.sell").css({ "border-top": arrow_height + "px solid rgb(355, 100, 49)" });
 
 // Arrow width
 $("div.arrow_wrapper").css({ "width": arrow_width + "px" });
@@ -512,15 +512,15 @@ market_key = js_safe_key(market_id, exchange);
 
 	html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
     
-	'<div class="title" style="font-size: '+title_size+'px; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> (<span class="status_'+exchange+'">Connecting...</span>)</div>'+
+	'<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> (<span class="status_'+exchange+'">Connecting...</span>)</div>'+
 	
-	'<div class="ticker" style="font-size: '+ticker_size+'px; font-weight: '+font_weight+';" id="ticker_' + market_key + '">Loading...</div>'+
+	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';" id="ticker_' + market_key + '">Loading...</div>'+
 ////////////////////////////////////////////
-	'<div class="high" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
-	'<span class="low" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
+	'<div class="high" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
+	'<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
 //////////////////////////////////////////
-        '<div class="PCP" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
-	'<span class="pricechange" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
+        '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
+	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
 //	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
