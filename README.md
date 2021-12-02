@@ -1,11 +1,11 @@
 # btcticker
 https://github.com/taoteh1221/Slideshow_Crypto_Ticker
 
-    git push -f https://github.com/dongodao/slideshow-crypto-ticker.git
+    git clone https://github.com/dongodao/btcticker.git
     
-    cp slideshow-crypto-ticker/config.js slideshow-crypto-ticker/.
+    cp btcticker/config.js slideshow-crypto-ticker/.
     
-    cp slideshow-crypto-ticker/js/functions.js slideshow-crypto-ticker/js/.
+    cp btcticker/functions.js slideshow-crypto-ticker/js/.
     
     ~/ticker-restart
 
