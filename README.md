@@ -6,6 +6,9 @@ https://github.com/taoteh1221/Slideshow_Crypto_Ticker
     cp btcticker/config.js slideshow-crypto-ticker/.
     
     cp btcticker/functions.js slideshow-crypto-ticker/js/.
+    
+    ~/ticker-restart
+
 
 https://www.tomshardware.com/how-to/disable-ssh-password-warning-raspberry-pi
 
