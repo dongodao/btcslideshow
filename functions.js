@@ -1342,7 +1342,7 @@ console.log('api_connect'); // DEBUGGING
 			low_max_dec = parseFloat(low_raw).toFixed(low_decimals); // Set max decimals
 			low = parseFloat(low_max_dec); // Remove any trailing zeros in decimals
 //			// Price Change Percent  decimals
-			PCP_decimals = ( PCP_raw >= -10 ? 1 : max_ticker_decimals ); 
+			PCP_decimals = ( PCP_raw >= -50 ? 1 : max_ticker_decimals ); 
 			PCP_decimals = ( PCP_raw >= 10 ? 0 : PCP_decimals );
 			PCP_max_dec = parseFloat(PCP_raw).toFixed(PCP_decimals); // Set max decimals
 			PCP = parseFloat(PCP_max_dec); // Remove any trailing zeros in decimals 
