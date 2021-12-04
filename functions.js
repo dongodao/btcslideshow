@@ -332,7 +332,7 @@ function number_commas(num, decimals) {
 	
 //console.log(typeof num);
 	
-	if ( num >= 1 ) {
+	if ( num >= -20000 ) {
 		
 		if ( typeof num == 'string' ) {
 		
