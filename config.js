@@ -112,7 +112,7 @@ var ticker_size = 100; // Default = 66
 
 
 // Maximum decimal places for values worth under 1.00 in unit value, for prettier / less-cluttered interface
-var max_ticker_decimals = 7; // Default = 7
+var max_ticker_decimals = 2; // Default = 7
 
 
 // 24 hour volume font size
