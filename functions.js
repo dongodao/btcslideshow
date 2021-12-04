@@ -520,7 +520,7 @@ market_key = js_safe_key(market_id, exchange);
 	'<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
 //////////////////////////////////////////
         '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
-	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
+	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
 //	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
@@ -1347,7 +1347,7 @@ console.log('api_connect'); // DEBUGGING
 			PCP_max_dec = parseFloat(PCP_raw).toFixed(PCP_decimals); // Set max decimals
 			PCP = parseFloat(PCP_max_dec); // Remove any trailing zeros in decimals 
 			// Price Change  decimals
-			pricechange_decimals = ( pricechange_raw >= -100000 ? 0 : max_ticker_decimals );
+			pricechange_decimals = ( pricechange_raw >= -10000 ? 0 : max_ticker_decimals );
 			pricechange_decimals = ( pricechange_raw >= 100 ? 0 : pricechange_decimals );
 			pricechange_max_dec = parseFloat(pricechange_raw).toFixed(pricechange_decimals); // Set max decimals
 			pricechange = parseFloat(pricechange_max_dec); // Remove any trailing zeros in decimals
@@ -1375,7 +1375,7 @@ console.log('api_connect'); // DEBUGGING
                         number_commas(PCP, PCP_decimals) + "%" +
                          "</span>";
 			pricechange_item = 
-			 "<span class='spacing'>, &nbsp " + market_symbol +
+			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
 			 number_commas(pricechange, pricechange_decimals) +
 			 "</span></div>"; 
 
