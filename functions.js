@@ -521,7 +521,7 @@ market_key = js_safe_key(market_id, exchange);
 //////////////////////////////////////////
         '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
 	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
-        '<span class="lastprice" style="font-size: '+volume_size+'px; color: #6133ff; font-weight: '+font_weight+';" id="lastprice_' + market_key + '"</span></div>'+
+        '<span class="openprice" style="font-size: '+volume_size+'px; color: #6133ff; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
 //	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
@@ -1149,7 +1149,7 @@ console.log('api_connect'); // DEBUGGING
 		low_raw = msg["l"];
 		pricechange_raw = msg["p"];
 		PCP_raw = msg["P"];
-                lastprice_raw = msg["c"];
+                openprice_raw = msg["o"];
 
 ///////////////////////////////////////////////////////				 
 		}
@@ -1355,11 +1355,11 @@ console.log('api_connect'); // DEBUGGING
 			pricechange_decimals = ( pricechange_raw >= 100 ? 0 : pricechange_decimals );
 			pricechange_max_dec = parseFloat(pricechange_raw).toFixed(pricechange_decimals); // Set max decimals
 			pricechange = parseFloat(pricechange_max_dec); // Remove any trailing zeros in decimals
-                        // Lastprice decimals
-                        Lastprice_decimals = ( lastprice_raw >= 1 ? 0 : max_ticker_decimals );
-//                      lastprice_decimals = ( lastprice_raw >= 100 ? 0 : lastprice_decimals );
-                        lastprice_max_dec = parseFloat(lastprice_raw).toFixed(lastprice_decimals); // Set max decimals
-                        lastprice = parseFloat(lastprice_max_dec); // Remove any trailing zeros in decimals
+                        // Openprice decimals
+                        openprice_decimals = ( openprice_raw >= 1 ? 0 : max_ticker_decimals );
+//                      openprice_decimals = ( openprice_raw >= 100 ? 0 : openprice_decimals );
+                        openprice_max_dec = parseFloat(openprice_raw).toFixed(openprice_decimals); // Set max decimals
+                        openprice = parseFloat(openprice_max_dec); // Remove any trailing zeros in decimals
 
 				////////////////////////////////////////////////////				
 			// HTML for rendering
@@ -1388,9 +1388,9 @@ console.log('api_connect'); // DEBUGGING
 			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
 			 number_commas(pricechange, pricechange_decimals) +
 			 "</span></div>"; 
-                        lastprice_item =
+                        openprice_item =
                          "<span class='spacing'>Close: " + market_symbol +
-                         number_commas(lastprice, lastprice_decimals) +
+                         number_commas(openprice, openprice_decimals) +
                          "</span></div>";
 
  
@@ -1431,7 +1431,7 @@ console.log('api_connect'); // DEBUGGING
 			$("#low_" + update_key).html(low_item); 
                         $("#PCP_" + update_key).html(PCP_item);
  			$("#pricechange_" + update_key).html(pricechange_item);  
-			$("#lastprice_" + update_key).html(lastprice_item);  //////////////////////////////////////				
+			$("#openprice_" + update_key).html(openprice_item);  //////////////////////////////////////				
 			$("#volume_" + update_key).html(volume_item);
 				
 				
@@ -1444,7 +1444,7 @@ console.log('api_connect'); // DEBUGGING
 				monospace_rendering(document.querySelectorAll('#low_' + update_key)[0]);
 				monospace_rendering(document.querySelectorAll('#PCP_' + update_key)[0]);
 				monospace_rendering(document.querySelectorAll('#pricechange_' + update_key)[0]);
-				monospace_rendering(document.querySelectorAll('#lastprice_' + update_key)[0]);
+				monospace_rendering(document.querySelectorAll('#openprice_' + update_key)[0]);
 
 					if ( typeof base_volume !== 'undefined' ) {
 					monospace_rendering(document.querySelectorAll('#volume_' + update_key)[0]);
