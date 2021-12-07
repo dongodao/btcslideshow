@@ -521,7 +521,7 @@ market_key = js_safe_key(market_id, exchange);
 //////////////////////////////////////////
         '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
 	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
-        '<span class="openprice" style="font-size: '+volume_size+'px; color: #6133ff; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
+        '<span class="openprice" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
 //	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
