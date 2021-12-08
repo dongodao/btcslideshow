@@ -505,12 +505,12 @@ asset = parsed_market_id.asset;
 ////////////////////////////////////////////////////////////////////////////
 assetname = asset;
 
-if ( assetname = "ETH" ) {
-assetname = "Ethereum";
+if ( assetname == "ETH" ) {
+assetname = "Ethereum ETH";
 }
 
-if ( assetname = "BTC" ) {
-assetname = "Bitcoin";
+if ( assetname == "BTC" ) {
+assetname = "Bitcoin BTC";
 }
 //////////////////////////////////////////////////////////////////////
 		
