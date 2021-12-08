@@ -501,6 +501,18 @@ function ticker_html(market_id, exchange) {
 parsed_market_id = market_id_parser(market_id, exchange);
 				 
 asset = parsed_market_id.asset;
+	
+////////////////////////////////////////////////////////////////////////////
+assetname = asset;
+
+if ( assetname = "ETH" ) {
+assetname = "Ethereum";
+}
+
+if ( assetname = "BTC" ) {
+assetname = "Bitcoin";
+}
+//////////////////////////////////////////////////////////////////////
 		
 pairing = parsed_market_id.pairing;
   
@@ -512,7 +524,7 @@ market_key = js_safe_key(market_id, exchange);
 
 	html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
     
-	'<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> (<span class="status_'+exchange+'">Connecting...</span>)</div>'+
+	'<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + assetname + '</span> (<span class="status_'+exchange+'">Connecting...</span>)</div>'+
 	
 	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';" id="ticker_' + market_key + '">Loading...</div>'+
 ////////////////////////////////////////////
