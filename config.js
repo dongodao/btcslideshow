@@ -81,7 +81,7 @@ var orient_screen = 180; // Normal = 0, Flipped = 180, Sideways = 90 or 270
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 5; // Default = 36, 5= 3.5" lcd
+var vertical_position = 3; // Default = 36, 3= 3.5" lcd
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
@@ -94,7 +94,7 @@ var transition_speed = 0.75; // Default = 0.75
 
 
 // ALL font weights (for ALL ticker text)
-var font_weight = 'normal'; // Default = 'normal', can be any proper CSS font weight value
+var font_weight = '100'; // Default = 'normal', can be any proper CSS font weight value 100-900, 400 is the same as normal, and 700 is the same as bold
 
 
 // Title font size
@@ -116,7 +116,7 @@ var max_ticker_decimals = 2; // Default = 7
 
 
 // 24 hour volume font size
-var volume_size = 33; // Default = 40, 33= 3.5" lcd
+var volume_size = 35; // Default = 40, 33= 3.5" lcd
 
 
 // Hide volume section, IF NO VOLUME WAS PROVIDED
