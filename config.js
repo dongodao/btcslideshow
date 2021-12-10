@@ -108,7 +108,7 @@ var arrow_size = 0.65; // Default = 0.65
 
 
 // Ticker font size
-var ticker_size = 100; // Default = 66
+var ticker_size = 95; // Default = 66
 
 
 // Maximum decimal places for values worth under 1.00 in unit value, for prettier / less-cluttered interface
@@ -116,7 +116,7 @@ var max_ticker_decimals = 2; // Default = 7
 
 
 // 24 hour volume font size
-var volume_size = 35; // Default = 40, 35= 3.5" lcd
+var volume_size = 33; // Default = 40, 33= 3.5" lcd
 
 
 // Hide volume section, IF NO VOLUME WAS PROVIDED
