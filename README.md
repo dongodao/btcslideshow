@@ -9,6 +9,8 @@ https://github.com/taoteh1221/Slideshow_Crypto_Ticker
     
     cp btcslideshow/general.js slideshow-crypto-ticker/js/core/.
     
+    cp btcslideshow/api.js slideshow-crypto-ticker/js/core/.
+    
     ~/ticker-restart
 
 
