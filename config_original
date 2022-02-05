@@ -48,31 +48,31 @@ exchange_markets['bitfinex'] = '';
 ////
 ////
 // Coinbase markets (set to '' to disable)
-exchange_markets['coinbase'] = 'BTC-USD|ETH-USD|ETH-BTC|SOL-USD'; 
+exchange_markets['coinbase'] = ''; 
 ////
 //// 
 // Coingecko markets (set to '' to disable)
 // USE COINGECKO'S API ID FOR EACH ASSET! (SEE COINGECKO ASSET PAGE'S INFO SECTION) 
 // PAIRING ASSET MUST BE SUPPORTED BY COINGECKO'S 'vs_currencies' API PARAMETER!
 // FORMAT IS 'api-id-here:symbol/pairing'
-exchange_markets['coingecko'] = 'solana:sol/btc|grape-2:grape/usd|invictus:in/usd|mysterium:myst/usd';
+exchange_markets['coingecko'] = '';
 ////
 ////
 // Binance markets (set to '' to disable)
-exchange_markets['binance'] = 'hntusdt|lrcusdt'; 
+exchange_markets['binance'] = 'ethusdt'; 
 ////
 ////
 // Loopring markets (set to '' to disable) 
-exchange_markets['loopring'] = 'LRC-ETH';
+exchange_markets['loopring'] = '';
 ////
 ////
 // Kraken markets (set to '' to disable)
-exchange_markets['kraken'] = 'ENJ/USD'; 
+exchange_markets['kraken'] = ''; 
 ////
 ////
 // Kucoin markets (set to '' to disable)
 // !!KUCOIN REQUIRES USING THE INSTALL SCRIPT!!
-exchange_markets['kucoin'] = 'MANA-USDT'; 
+exchange_markets['kucoin'] = ''; 
 ////
 ////
 // OKex markets (set to '' to disable) 
@@ -85,11 +85,11 @@ exchange_markets['hitbtc'] = '';
 ////
 ////
 // Bitmart markets (set to '' to disable) 
-exchange_markets['gateio'] = 'SLC_USDT|RNDR_USDT|SLRS_USDT|SAMO_USDT';
+exchange_markets['gateio'] = '';
 ////
 ////
 // Bitmart markets (set to '' to disable) 
-exchange_markets['bitmart'] = 'SG_USDT';
+exchange_markets['bitmart'] = '';
 
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -99,12 +99,12 @@ exchange_markets['bitmart'] = 'SG_USDT';
 
 
 // Screen orientation (offset in degrees)
-var orient_screen = 0; // Normal (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
+var orient_screen = 180; // Normal (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
 
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 70; // Default = 35 (SMALL SCREEN), 70 (LARGE SCREEN)
+var vertical_position = 3; // Default = 35 (SMALL SCREEN), 70 (LARGE SCREEN)
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
@@ -130,11 +130,11 @@ var transition_speed = 0.75; // Default = 0.75
 
 
 // ALL font weights (for ALL ticker text)
-var font_weight = 'normal'; // Default = 'normal', can be any proper CSS font weight value
+var font_weight = 'normal'; // Default = '100', can be any proper CSS font weight value, can be any proper CSS font weight value 100-900, 400 is the same as normal, and 700 is the same as bold
 
 
 // Title font size
-var title_size = 115; // Default = 57 (SMALL SCREEN), 115 (LARGE SCREEN)
+var title_size = 45; // Default = 57 (SMALL SCREEN), 115 (LARGE SCREEN)
 
 
 // Ticker arrow size ratio (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
@@ -144,15 +144,15 @@ var arrow_size = 0.65; // Default = 0.65
 
 
 // Ticker font size
-var ticker_size = 150; // Default = 75 (SMALL SCREEN), 150 (LARGE SCREEN)
+var ticker_size = 95; // Default = 75 (SMALL SCREEN), 150 (LARGE SCREEN)
 
 
 // 24 hour volume font size
-var volume_size = 84; // Default = 42 (SMALL SCREEN), 84 (LARGE SCREEN)
+var volume_size = 35; // Default = 42 (SMALL SCREEN), 84 (LARGE SCREEN)
 
 
 // Maximum decimal places for ticker values worth under 1.00 in unit value, for prettier / less-cluttered interface
-var max_ticker_decimals = 6; // Default = 6
+var max_ticker_decimals = 2; // Default = 6
 
 
 // Minimum decimal places for ANY ticker values
@@ -173,7 +173,7 @@ var background_color = '#000000'; // Default = '#000000'
 // Use a google font...set as null for default system serif font
 // Runs the ticker in ANY google font found at: https://fonts.google.com
 // 'fontname' IN QUOTES for ANY google font, OR null to skip (null MUST BE LOWERCASE WITHOUT QUOTES)
-var google_font = 'Varela Round'; // Default = 'Varela Round'
+var google_font = 'Ranchers'; // Default = 'Varela Round'
 
 
 // EMULATED / dynamic monospace font WIDTH spacing (percent of EACH font size as a decimal) 
@@ -297,7 +297,7 @@ var fiat_pairings = {
 						'UGX': 'USh ',
 						'USD': '$',
 						'USDC': 'Ⓢ ',
-						'USDT': '₮ ',
+						'USDT': '$ ',
 						'UST': 'Ⓢ ',
 						'UYU': '$U ',
 						'VND': '₫',
