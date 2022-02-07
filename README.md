@@ -19,6 +19,12 @@ https://www.tomshardware.com/how-to/disable-ssh-password-warning-raspberry-pi
 Disable SSH warning during start up: 	
     
     sudo rm /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
+    
+Remote Access https://pythonprogramming.net/remote-access-raspberry-pi-tutorials/
+
+    sudo apt-get install tightvncserver
+    
+    sudo apt-get install xrdp
 
 Coingecko
    
