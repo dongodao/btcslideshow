@@ -26,7 +26,7 @@ Remote Access https://pythonprogramming.net/remote-access-raspberry-pi-tutorials
     
     sudo apt-get install xrdp
 
-Coingecko
+Coingecko https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin
    
     "id": "bitcoin",
     
