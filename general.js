@@ -3,11 +3,44 @@
 
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function nl2br(str){
+ return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function uc_first(input) { 
 return input[0].toUpperCase() + input.slice(1); 
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function reload_js(src_file) {
+remove_jscss_file(src_file, 'js');
+load_js(src_file + '?cachebuster='+ new Date().getTime() );
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+var count_decimals = function (value) {
+    if(Math.floor(value) === value) return 0;
+    return value.toString().split(".")[1].length || 0; 
 }
 
 
@@ -27,17 +60,36 @@ function is_json(str) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function load_js(file) {
+function system_info_js() {
+    
+    if ( show_system_data == 'on' ) {
+        
+    reload_js('cache/system-info.js'); // System info
+    
+        // Rerun system_info_js() again after 65000 milliseconds (65 seconds)
+        setTimeout(function() {
+        system_info_js();
+        }, 65000); 
+        
+    }
 
-script= document.createElement('script');
-script.src= file;
+}
 
-head = document.getElementsByTagName('head')[0];
-head.appendChild(script);
 
-   script.onload = function(){
-   console.log('Loaded JS file: ' + file);
-   };
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function valid_endpoint(exchange) {
+
+	// Skip, if no endpoint or markets are set for this exchange
+	if ( typeof api[exchange] == 'undefined' || api[exchange].trim() == '' ) {
+	console.log(exchange + ' endpoint not defined, removing it\'s market config...');
+	markets[exchange] = '';
+	return false;
+	}
+	else {
+	return true;
+	}
 
 }
 
@@ -66,6 +118,30 @@ key = key.toLowerCase();
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+function remove_jscss_file(filename, filetype) {
+    
+var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
+var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+var allsuspects=document.getElementsByTagName(targetelement)
+    
+    for ( var i=allsuspects.length; i>=0; i-- ) { //search backwards within nodelist for matching elements to remove
+    
+        if (
+        allsuspects[i] 
+        && allsuspects[i].getAttribute(targetattr) != null 
+        && allsuspects[i].getAttribute(targetattr).indexOf(filename) != -1
+        ) {
+        allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+        }
+        
+    }
+    
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function arrow_html() {
 
 arrow_height = Math.round(ticker_size * arrow_size);
@@ -82,23 +158,8 @@ $("div.arrow_wrapper").css({ "width": arrow_width + "px" });
 $("span.arrow").css({ "border-left": arrow_border_width + "px solid transparent" });
 $("span.arrow").css({ "border-right": arrow_border_width + "px solid transparent" });
 
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function valid_endpoint(exchange) {
-
-	// Skip, if no endpoint or markets are set for this exchange
-	if ( typeof api[exchange] == 'undefined' || api[exchange].trim() == '' ) {
-	console.log(exchange + ' endpoint not defined, removing it\'s market config...');
-	markets[exchange] = '';
-	return false;
-	}
-	else {
-	return true;
-	}
+// Arrow right-side spacing
+$("div.arrow_wrapper").css({ "margin-right": arrow_spacing + 'px' });
 
 }
 
@@ -123,10 +184,107 @@ console.log(' ');
 console.log('1) Open the "Terminal" app in your operating system interface menu, or login via remote terminal, AS THE USER YOU WANT RUNNING THE APP (user must have sudo privileges).');
 console.log(' ');
 console.log('2) In the terminal, copy / paste / run this command, THEN REBOOT when finished installing the app:');
-console.log('wget --no-cache -O TICKER-INSTALL.bash https://git.io/Jqzjk;chmod +x TICKER-INSTALL.bash;sudo ./TICKER-INSTALL.bash');
+console.log('wget --no-cache -O TICKER-INSTALL.bash https://tinyurl.com/install-crypto-ticker;chmod +x TICKER-INSTALL.bash;sudo ./TICKER-INSTALL.bash');
 console.log(' ');
 console.log('3) ON REBOOT / TICKER STARTUP, you are logged-in to the GRAPHICAL DESKTOP INTERFACE, #AND# are running the app as the SAME USER YOU INSTALLED AS.');
 console.log(' ');
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function copy_text(elm) {
+
+  // for Internet Explorer
+  if(document.body.createTextRange) {
+    range = document.body.createTextRange();
+    range.moveToElementText(elm);
+    range.select();
+    document.execCommand("Copy");
+	 alert('Copied to clipboard.');
+  }
+  // other browsers
+  else if(window.getSelection) {
+    selection = window.getSelection();
+    range = document.createRange();
+    range.selectNodeContents(elm);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("Copy");
+	 alert('Copied to clipboard.');
+  }
+  
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function change_color(id) {
+
+hex_color = rgb2hex( $("#" + id).css('color') );
+    
+    if ( typeof hex_color != 'undefined' ) {
+    
+        // Switch back and forth between yellow / cyan
+        if ( hex_color == '#ffff00' ) {
+        new_color = "#00ffff";
+        }
+        else {
+        new_color = "#ffff00";
+        }
+    
+    $("#" + id).css("transition", "color 30.0s").css('color', new_color);
+    
+        // Rerun change_color() again after 30 seconds
+        setTimeout(function() {
+        change_color(id);
+        }, 30000);  
+    
+    }
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function load_js(file) {
+
+script= document.createElement('script');
+script.src= file;
+
+// Defer seems better for letting everything load without it:
+// https://flaviocopes.com/javascript-async-defer/
+// https://medium.com/swlh/async-defer-and-dynamic-scripts-9a2c43a92be1
+script.defer = true;
+script.async = false;
+
+head = document.getElementsByTagName('head')[0];
+head.appendChild(script);
+
+   script.onload = function(){
+       
+       if ( debug_mode == 'on' ) {
+       console.log('Loaded JS file: ' + file);
+       }
+       
+   };
+    
+   
+   // List all loaded js scripts in debug mode
+   // (to double-check we are not double-loading when we reload a script)
+   if ( debug_mode == 'on' ) {
+   
+   scripts = document.getElementsByTagName('script');
+
+        for(var i=0;i<scripts.length;i++){
+        console.log(scripts[i].src);
+        }    
+    
+   }
 
 }
 
@@ -138,9 +296,9 @@ function init_interface() {
 
 console.log('init_interface'); // DEBUGGING
 
-// Load cache.js dynamically, avoiding loading from the browser cache (lol, cachefest), via a timestamp url param
+// Load kucoin.js dynamically, avoiding loading from the browser cache (lol, cachefest), via a timestamp url param
 script= document.createElement('script');
-script.src= 'cache/cache.js?cachebuster='+ new Date().getTime();
+script.src= 'cache/kucoin.js?cachebuster='+ new Date().getTime();
 
 head = document.getElementsByTagName('head')[0];
 head.appendChild(script);
@@ -201,7 +359,7 @@ var result = (check - Math.floor(check)) !== 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function number_commas(num, decimals) {
+function number_commas(num, min_decimals, max_decimals) {
 	
 //console.log(typeof num);
 	
@@ -210,16 +368,16 @@ function number_commas(num, decimals) {
 		if ( typeof num == 'string' ) {
 		
 			num = parseFloat(num).toLocaleString(undefined, {
-   		    minimumFractionDigits: decimals,
-   		    maximumFractionDigits: decimals
+   		    minimumFractionDigits: min_decimals,
+   		    maximumFractionDigits: max_decimals
 			});
 		
 		}
 		else {
 		
 			num = num.toLocaleString(undefined, {
-   		    minimumFractionDigits: decimals,
-   		    maximumFractionDigits: decimals
+   		    minimumFractionDigits: min_decimals,
+   		    maximumFractionDigits: max_decimals
 			});
 		
 		}
@@ -269,6 +427,7 @@ render = render.replace(/mart/gi, "Mart");
 render = render.replace(/ftx/gi, "FTX");
 render = render.replace(/gateio/gi, "Gate.io");
 render = render.replace(/coingecko/gi, "CGecko");
+render = render.replace(/dex/gi, "DEX");
 
 return render;
 
@@ -328,17 +487,7 @@ function ticker_html(market_id, exchange) {
 parsed_market_id = market_id_parser(market_id, exchange);
 				 
 asset = parsed_market_id.asset;
-////////////////////////////////////////////////////////////////////////////
-assetname = asset;
-
-if ( assetname == "ETH" ) {
-assetname = "Ethereum ETH";
-}
-
-if ( assetname == "BTC" ) {
-assetname = "Bitcoin BTC";
-}
-//////////////////////////////////////////////////////////////////////		
+		
 pairing = parsed_market_id.pairing;
   
 market_key = js_safe_key(market_id, exchange);
@@ -352,14 +501,8 @@ market_key = js_safe_key(market_id, exchange);
 	'<div class="title" style="font-size: '+title_size+'px; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
 	
 	'<div class="ticker" style="font-size: '+ticker_size+'px; font-weight: '+font_weight+';" id="ticker_' + market_key + '"></div>'+
- ////////////////////////////////////////////
-	'<div class="high" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
-	'<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
-  '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
-	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
-  '<span class="openprice" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
-//////////////////////////////////////////   
-//	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
+    
+	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
 	
@@ -453,8 +596,8 @@ t_speed = Math.round(window.transition_speed * 1000);
 			
 		ticker_prev = this_ticker.prev().length ? this_ticker.prev() : ticker_divs.last();
 			
-   		ticker_prev.fadeOut(t_speed, function() {
-   		this_ticker.fadeIn(t_speed);
+   		    ticker_prev.fadeOut(t_speed, function() {
+   		    this_ticker.fadeIn(t_speed);
 			});
 		
 		}
@@ -513,6 +656,82 @@ var scientificToDecimal = function (num) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+function dyn_max_decimals(price_raw) {
+    
+    
+    if ( ticker_round_percent == 'one' ) {
+    x = 1;
+    }
+    else if ( ticker_round_percent == 'tenth' ) {
+    x = 0.1;
+    }
+    else if ( ticker_round_percent == 'hundredth' ) {
+    x = 0.01;
+    }
+    else if ( ticker_round_percent == 'thousandth' ) {
+    x = 0.001;
+    }
+    
+    
+unit_percent = (price_raw / 100) * x;
+
+    
+    // 8 decimals rounding
+    if ( unit_percent <= 0.00000005 ) {
+    decimals = 8;
+    }
+    // 7 decimals rounding
+    else if ( unit_percent <= 0.0000005 ) {
+    decimals = 7;
+    }
+    // 6 decimals rounding
+    else if ( unit_percent <= 0.000005 ) {
+    decimals = 6;
+    }
+    // 5 decimals rounding
+    else if ( unit_percent <= 0.00005 ) {
+    decimals = 5;
+    }
+    // 4 decimals rounding
+    else if ( unit_percent <= 0.0005 ) {
+    decimals = 4;
+    }
+    // 3 decimals rounding
+    else if ( unit_percent <= 0.005 ) {
+    decimals = 3;
+    }
+    // 2 decimals rounding
+    else if ( unit_percent <= 0.05 ) {
+    decimals = 2;
+    }
+    // 1 decimals rounding
+    else if ( unit_percent <= 0.5 ) {
+    decimals = 1;
+    }
+    // 0 decimals rounding
+    else {
+    decimals = 0;
+    }
+    
+
+    // Use min/max decimals if applicable  (from user config)
+    if ( decimals > ticker_max_decimals ) {
+    return ticker_max_decimals;
+    }
+    else if ( decimals < ticker_min_decimals ) {
+    return ticker_min_decimals;
+    }
+    else {
+    return decimals;
+    }
+    
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function reload_check() {
 
 
@@ -537,7 +756,7 @@ function reload_check() {
                 	        
             				
             				if ( reload_countdown > 0 ) {
-                            $("#internet_alert").html("Internet back online, reloading...<br />(in " + reload_countdown + " seconds)").css("color", "#FFFF00");
+                            $("#internet_alert").html("Internet back online, reloading...<br />(in " + reload_countdown + " seconds)").css("color", "#ffff00");
             				}
             				else if ( reload_countdown === 0 ) {
                             reload_queued = false; // Just for clean / readable code's sake
@@ -580,17 +799,11 @@ console.log('render_interface'); // DEBUGGING
     console.log('market_config was already setup, skipping.');
     }
     // If offline
-    else if ( is_online == false ) {
+    else if ( market_config() == 'offline' ) {
     reload_queued = true;
     console.log('No internet connection, interface rendering stopped...');
     $("#internet_alert").css({ "display": "block" });
     $("#internet_alert").text("Internet Offline!").css("color", "#fc4e4e"); 
-    return;
-    }
-    // Wait for market_config()
-    else if ( market_config() == 'wait' ) {
-    console.log('Waiting for market_config to complete processing...');
-    setTimeout(render_interface, 1000); // Wait 1000 millisecnds then recheck
     return;
     }
     
@@ -647,7 +860,7 @@ console.log('render_interface'); // DEBUGGING
 
 function update_ticker(update_key, market_id, asset, pairing, price_raw, base_volume, exchange=false) {
 				 
-price_raw = scientificToDecimal(price_raw); // Convert scientific format to string (decimal), if needed
+price_raw = scientificToDecimal(price_raw); // Convert scientific format to string (decimals), if needed
 
    
    // Show or hide exchange / api status
@@ -656,7 +869,7 @@ price_raw = scientificToDecimal(price_raw); // Convert scientific format to stri
 	   // Using ".status_" + update_key INSTEAD, TO SHOW PER-ASSET 
        if ( price_raw == 0 ) {
        $(".parenth_" + update_key).css({ "display": "inline" });
-       $(".status_" + update_key).text("Loading").css("color", "#FFFF00");
+       $(".status_" + update_key).text("Loading").css("color", "#ffff00");
        return;
        }
        else if ( show_exchange_name == 'off' ) {
@@ -666,7 +879,6 @@ price_raw = scientificToDecimal(price_raw); // Convert scientific format to stri
        $(".parenth_" + update_key).css({ "display": "inline" });
        $(".status_" + update_key).text( render_names(exchange) ).css("color", "#2bbf7b");
        }
-       
    
    }
                        
@@ -677,88 +889,50 @@ market_info = asset_symbols(pairing);
         		 
 market_symbol = market_info['asset_symbol'];
         			
-// Price decimals (none if >= 100, 2 if >= 1, 'max_ticker_decimals' if < 1 )
-price_decimals = ( price_raw >= 1 ? 0 : max_ticker_decimals );  /////////////////////////////////////////////////////////
-price_decimals = ( price_raw >= 100 ? 0 : price_decimals );
+// Determine decimals [IF NEEDED, this is set to ticker_min_decimals OR ticker_max_decimals ALREADY in dyn_max_decimals()]
+set_max_decimals = dyn_max_decimals(price_raw, market_info);
+        	
         			
-// If MINIMUM decimals IS set, and 'price_decimals' is smaller, force decimals to 'min_ticker_decimals'
-price_decimals = ( min_ticker_decimals > price_decimals ? min_ticker_decimals : price_decimals );
-        			
-price_max_dec = parseFloat(price_raw).toFixed(price_decimals); // Set max decimals
-///////////////////////////////////////////////////////////////////////////
-			// High decimals
-			high_decimals = ( high_raw >= 1 ? 0 : max_ticker_decimals ); 
-//			high_decimals = ( high_raw >= 100 ? 0 : high_decimals );
-			high_max_dec = parseFloat(high_raw).toFixed(high_decimals); // Set max decimals
-			high = parseFloat(high_max_dec); // Remove any trailing zeros in decimals 
-			// Low decimals
-			low_decimals = ( low_raw >= 1 ? 0 : max_ticker_decimals );
-//			low_decimals = ( low_raw >= 100 ? 0 : low_decimals );
-			low_max_dec = parseFloat(low_raw).toFixed(low_decimals); // Set max decimals
-			low = parseFloat(low_max_dec); // Remove any trailing zeros in decimals
-//			// Price Change Percent  decimals
-			PCP_decimals = ( PCP_raw >= -50 ? 0 : max_ticker_decimals );
-			PCP_decimals = ( PCP_raw >= -10 ? 1 : PCP_decimals );
-			PCP_decimals = ( PCP_raw >= 10 ? 0 : PCP_decimals );
-			PCP_max_dec = parseFloat(PCP_raw).toFixed(PCP_decimals); // Set max decimals
-			PCP = parseFloat(PCP_max_dec); // Remove any trailing zeros in decimals 
-			// Price Change  decimals
-			pricechange_decimals = ( pricechange_raw >= -10000 ? 0 : max_ticker_decimals );
-			pricechange_decimals = ( pricechange_raw >= 100 ? 0 : pricechange_decimals );
-			pricechange_max_dec = parseFloat(pricechange_raw).toFixed(pricechange_decimals); // Set max decimals
-			pricechange = parseFloat(pricechange_max_dec); // Remove any trailing zeros in decimals
-                        // Openprice decimals
-                        openprice_decimals = ( openprice_raw >= 1 ? 0 : max_ticker_decimals );
-//                      openprice_decimals = ( openprice_raw >= 100 ? 0 : openprice_decimals );
-                        openprice_max_dec = parseFloat(openprice_raw).toFixed(openprice_decimals); // Set max decimals
-                        openprice = parseFloat(openprice_max_dec); // Remove any trailing zeros in decimals
+    // Set minimum decimals
+    // If FIAT value under 100, AND IF set_max_decimals is less than or equal to 2,
+    // then force 2 FIXED decimals ALWAYS for #FIAT VALUES# UX
+    if ( price_raw < 100 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
+    set_max_decimals = 2; // For number_commas() logic (#MUST# BE RESET HERE TOO, #CANNOT# BE LESS THAN THE MINIMUM!!)
+    set_min_decimals = 2; // For number_commas() logic
+    }
+    // If DYNAMIC fixed minimum decimals configured in user config
+    // (ticker_min_decimals ALREADY CHECKED IN set_max_decimals [with dyn_max_decimals()])
+    else if ( ticker_round_fixed_decimals == 'on' ) {
+    set_min_decimals = set_max_decimals; // For number_commas() logic
+    }
+    // User config for min decimals used EVER (overrides ALL other fixed min decimal settings)
+    else {
+    set_min_decimals = ticker_min_decimals; // For number_commas() logic
+    }
 
-				////////////////////////////////////////////////////				        			
-        			
-     // If MINIMUM decimals NOT set, remove any trailing zeros in decimals
-     if ( min_ticker_decimals == 0 ) {
-     price = parseFloat(price_max_dec);
-     }
-     else {
-     price = price_max_dec;
-     }
-        			   
+
+// Price with max decimals
+price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
+
+// ADDITIONALLY remove any TRAILING zeros in any decimals (for UX)
+price = parseFloat(price_rounded);
+
+    
+    // IF we DID set using MINIMUM decimals, AND there are too few decimals in result
+    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    price = price.toFixed(set_min_decimals);
+    }
+        			       			   
         				
 // HTML for rendering
 ticker_item =
       "<div class='spacing'><div class='arrow_wrapper' style=''><span class='arrow " +
       trade_side +
       "'></span></div><span class='tick_text'>" + market_symbol +
-      number_commas(price, price_decimals) +
+      number_commas(price, set_min_decimals, set_max_decimals) +
       "</span></div>";
         				 
-////////////////////////////////////////////////////////////////////////// 
-			high_item = 
-			 "<span class='spacing'>High: " + market_symbol +
-			 number_commas(high, high_decimals) +
-			 "</span>"; 
-
-			low_item = 
-			 "<span class='spacing'>&nbsp &nbsp &nbsp Low: " + market_symbol +
-			 number_commas(low, low_decimals) +
-			 "</span></div>"; 
-
-      PCP_item =
-       "<span class='spacing'>Change: " +
-       number_commas(PCP, PCP_decimals) + "%" +
-       "</span>";
-			
-      pricechange_item = 
-			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
-			 number_commas(pricechange, pricechange_decimals) +
-			 "</span></div>"; 
-                        openprice_item =
-                         "<span class='spacing'>Close: " + market_symbol +
-                         number_commas(openprice, openprice_decimals) +
-                         "</span></div>";
-
- 
-//////////////////////////////////////////////////////////////////////////////////		        			
+        			
      // Volume logic
      if ( typeof base_volume !== 'undefined' ) {
         					
@@ -768,7 +942,7 @@ ticker_item =
         				
      volume_item = 
        "<div class='spacing'>Vol: " + market_symbol +
-       number_commas(base_volume, volume_decimals) +
+       number_commas(base_volume, 0, volume_decimals) +
        "</div>";
         				
      }
@@ -790,15 +964,7 @@ ticker_item =
 $("#ticker_" + update_key).html(ticker_item);
         			
 arrow_html(); // #MUST BE# AFTER TICKER RENDERING ABOVE
-  
- 	  //////////////////////////////////////////////////////////////
-  $("#high_" + update_key).html(high_item);  
-	$("#low_" + update_key).html(low_item); 
-  $("#PCP_" + update_key).html(PCP_item);
- 	$("#pricechange_" + update_key).html(pricechange_item);  
-	$("#openprice_" + update_key).html(openprice_item);  
-  //////////////////////////////////////////////////////////////////	  
-  
+        				
 $("#volume_" + update_key).html(volume_item);
         				
         				
@@ -806,15 +972,7 @@ $("#volume_" + update_key).html(volume_item);
      if ( monospace_check() == true ) {
         					
      monospace_rendering(document.querySelectorAll('#ticker_' + update_key)[0]);
-       
- /////////////////////////////////////////////////////////////
-				monospace_rendering(document.querySelectorAll('#high_' + update_key)[0]);
-				monospace_rendering(document.querySelectorAll('#low_' + update_key)[0]);
-				monospace_rendering(document.querySelectorAll('#PCP_' + update_key)[0]);
-				monospace_rendering(document.querySelectorAll('#pricechange_' + update_key)[0]);
-				monospace_rendering(document.querySelectorAll('#openprice_' + update_key)[0]);
- ////////////////////////////////////////////////////////////////
-       
+        				
         if ( typeof base_volume !== 'undefined' ) {
         monospace_rendering(document.querySelectorAll('#volume_' + update_key)[0]);
         }
