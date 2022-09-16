@@ -949,7 +949,32 @@ ticker_item =
       number_commas(price, set_min_decimals, set_max_decimals) +
       "</span></div>";
         				 
-        			
+////////////////////////////////////////////////////////////////////////// 
+			high_item = 
+			 "<span class='spacing'>High: " + market_symbol +
+			 number_commas(high, set_min_decimals, set_max_decimals) +
+			 "</span>"; 
+
+			low_item = 
+			 "<span class='spacing'>&nbsp &nbsp &nbsp Low: " + market_symbol +
+			 number_commas(low, set_min_decimals, set_max_decimals) +
+			 "</span></div>"; 
+//////////////////////////////////////////////////////////////////////////////////
+                        PCP_item =
+                         "<span class='spacing'>Change: " +
+                        number_commas(PCP, set_min_decimals, set_max_decimals) + "%" +
+                         "</span>";
+			pricechange_item = 
+			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
+			 number_commas(pricechange, set_min_decimals, set_max_decimals) +
+			 "</span></div>"; 
+                        openprice_item =
+                         "<span class='spacing'>Close: " + market_symbol +
+                         number_commas(openprice, set_min_decimals, set_max_decimals) +
+                         "</span></div>";
+
+ 
+//////////////////////////////////////////////////////////////////////////////////        			
      // Volume logic
      if ( typeof base_volume !== 'undefined' ) {
         					
