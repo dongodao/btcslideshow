@@ -487,6 +487,17 @@ function ticker_html(market_id, exchange) {
 parsed_market_id = market_id_parser(market_id, exchange);
 				 
 asset = parsed_market_id.asset;
+////////////////////////////////////////////////////////////////////////////
+assetname = asset;
+
+if ( assetname == "ETH" ) {
+assetname = "Ethereum ETH";
+}
+
+if ( assetname == "BTC" ) {
+assetname = "Bitcoin BTC";
+}
+//////////////////////////////////////////////////////////////////////
 		
 pairing = parsed_market_id.pairing;
   
@@ -497,12 +508,18 @@ market_key = js_safe_key(market_id, exchange);
 	if ( typeof market_key !== 'undefined' ) {
 
 	html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
-    
-	'<div class="title" style="font-size: '+title_size+'px; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
-	
-	'<div class="ticker" style="font-size: '+ticker_size+'px; font-weight: '+font_weight+';" id="ticker_' + market_key + '"></div>'+
-    
-	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
+		
+ ////////////////////////////////////////////////////////////////////////////   
+	'<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + assetname + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
+	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';" id="ticker_' + market_key + '"></div>'+
+	'<div class="high" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
+	'<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+    
+        '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
+	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
+        '<span class="openprice" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
+/////////////////////////////////////////////////////////////////////////////
+		
+//	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
 	
