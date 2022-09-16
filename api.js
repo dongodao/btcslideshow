@@ -2,9 +2,6 @@
 // Copyright 2019-2022 GPLv3, Slideshow Crypto Ticker by Mike Kilday: http://DragonFrugal.com
 
 
-
-
-
 /////////////////////////////////////////////////////////////
 
 
@@ -114,52 +111,67 @@ return parsed_markets[market_id];
 /////////////////////////////////////////////////////////////
 
 
-function loopring_config() {
+function upgrade_check() {
     
     
-    if  ( window.loopring_alert == 1 ) {
-    return;
-    }
-    else {
-	window.loopring_alert = 1; 
-    }
+    // Upgrade checks
+    if ( upgrade_notice == 'on' ) {
+        
+        
+    	$.get( "https://api.github.com/repos/taoteh1221/Slideshow_Crypto_Ticker/releases/latest", function(data) {
+    	    
+    	var latest_version = data.tag_name;
+    	
+    	
+    	    if ( app_version != latest_version ) {
+    	
+        	var latest_version_description = data.body;
+        	
+        	var latest_version_download = data.zipball_url;
+        	
+        	var latest_version_installer = "wget --no-cache -O TICKER-INSTALL.bash https://tinyurl.com/install-crypto-ticker;chmod +x TICKER-INSTALL.bash;sudo ./TICKER-INSTALL.bash";
+        	
+        	// Remove anything AFTER formatting in brackets in the description (including the brackets)
+        	// (removes the auto-added sourceforge download link)
+        	latest_version_description = latest_version_description.split('[')[0]; 
+        	
+        	latest_version_description = "Upgrade Description:\n\n" + latest_version_description.trim();
+        	
+        	latest_version_description = latest_version_description
+        	+ "\n\nAutomatic install terminal command:\n\n" + latest_version_installer + "\n\n";
+        	
+        	window.latest_version_description = latest_version_description
+        	+ "Manual Install File:\n\n" + latest_version_download
+        	+ "\n\nChangelog:\n\nhttps://raw.githubusercontent.com/taoteh1221/Slideshow_Crypto_Ticker/main/DOCUMENTATION-ETC/changelog.txt"
+        	+ "\n\n(select all the text of either install method to auto-copy to clipboard)";
+    	        
+            $("#upgrade_alert").css({ "display": "block" });
+            
+            $("#upgrade_alert").html("<span class='more_info' title=''>Upgrade available: v" + latest_version + "<br />(running v" + app_version + ")</span>"); 
+            
+            
+    	    }
+    	    else {
+    	    var latest_version_description;
+    	    var latest_version_download;
+    	    var latest_version_installer;
+    	    window.latest_version_description = '';
+            $("#upgrade_alert").css({ "display": "none" });
+            $("#upgrade_alert").html(""); 
+    	    }
+    	    
+    	   
+    	});
 
-    
-    if ( typeof api['loopring'] == 'undefined' ) {
-        
-    api['loopring'] = 'wait';
-        
-        
-    	$.getJSON("https://api3.loopring.io/v3/ws/key", function(data) {
-    	})
+
+        // Rerun upgrade_check() again after upgrade_api_refresh_milliseconds
+        setTimeout(function() {
+        upgrade_check();
+        }, upgrade_api_refresh_milliseconds);  
     	
-          .done(function(data) {
-              
-            var loopring_token = data.key;
-        	
-            	// If loopring auth data is cached, allow loopring configs
-            	if ( typeof loopring_token !== 'undefined' ) {
-            	api['loopring'] = 'wss://ws.api3.loopring.io/v3/ws' + '?wsApiKey=' + loopring_token;
-            	console.log('Loopring support enabled (VALID parameters detected).');
-            	return true;
-            	}
-            	// Remove loopring market configs if no cache data is present, to avoid script errors,
-            	// and alert (to console ONLY) that app was improperly installed
-            	else {
-            	// Whitespace will be detected as an invalid config, since we don't want the
-            	// endpoint 'undefined' becuase that's how we trigger a check / recheck 
-            	api['loopring'] = ' '; 
-            	delete exchange_markets['loopring']; 
-            	console_alert(); 
-            	console.log('Loopring support disabled (INVALID parameters detected).');
-            	return false;
-            	}
-        	
-          });
-          
-    	
-    }
-    
+	
+	}
+	
 
 }
 
@@ -277,23 +289,15 @@ console.log('market_config'); // DEBUGGING
 
 kucoin_config(); // Check / load kucoin data BEFORE MARKET CONFIG
 
-loopring_config(); // Check / load loopring data BEFORE MARKET CONFIG
-
     
     if ( is_online == false ) {
-    return false;
-    }
-    // Wait for loopring to get a temp API key
-    else if ( api['loopring'] == 'wait' ) {
-    console.log('Waiting on loopring market configuration to complete...');
-    setTimeout(market_config, 1000); // Wait 1000 millisecnds then recheck
-    return 'wait';
+    return 'offline';
     }
     
 
 // Exchange API endpoints
 
-// WE DYNAMICALLY ADD THE KUCOIN / LOOPRING ENDPOINTS within render_interface()
+// WE DYNAMICALLY ADD THE KUCOIN ENDPOINT within render_interface()
 
 api['binance'] = 'wss://stream.binance.com:9443/ws';
 
@@ -308,8 +312,6 @@ api['bitstamp'] = 'wss://ws.bitstamp.net/';
 api['bitfinex'] = 'wss://api.bitfinex.com/ws/1';
 
 api['okex'] = 'wss://ws.okex.com:8443/ws/v5/public';
-
-api['bitmart'] = 'wss://ws-manager-compress.bitmart.com?protocol=1.1';
 
 api['gateio'] = 'wss://ws.gate.io/v3/';
 
@@ -602,29 +604,6 @@ alph_symb_regex = /^[a-z0-9\/\-_|:]+$/i;
 		 
 		
 		}
-		// Loopring
-		else if ( exchange == 'loopring' ) {
-			
-    		// API call config 
-    		// ('unsubscribeAll' cancels any previous subscriptions)
-    		subscribe_msg[exchange] = {
-            "op": "sub",
-            "unsubscribeAll": true,
-            "topics": []
-            };
-		 
-		 
-			// Add markets to API call
-			var loop = 0;
-			markets[exchange].forEach(element => {
-			     subscribe_msg[exchange].topics[loop] =     {
-                  "topic": "ticker",
-                  "market": element
-                 };
-			loop = loop + 1;
-			});
-		
-		}
 		// Gate.io
 		else if ( exchange == 'gateio' ) {
 			
@@ -640,25 +619,6 @@ alph_symb_regex = /^[a-z0-9\/\-_|:]+$/i;
 			var loop = 0;
 			markets[exchange].forEach(element => {
 			subscribe_msg[exchange].params[loop] = element; 
-			loop = loop + 1;
-			});
-		
-		}
-		// Bitmart
-		else if ( exchange == 'bitmart' ) {
-			
-    		// API call config
-    		subscribe_msg[exchange] = {
-    			"op": "subscribe",
-    			"args": [
-    			]
-    		};
-		 
-		 
-			// Add markets to API call
-			var loop = 0;
-			markets[exchange].forEach(element => {
-			subscribe_msg[exchange].args[loop] = "spot/ticker:" + element; 
 			loop = loop + 1;
 			});
 		
@@ -692,8 +652,8 @@ function websocket_connect(exchange) {
 	sockets[exchange] = new WebSocket(api[exchange]);
     
     
-        // Fopr bitmart, hange binary type from "blob" to "arraybuffer"
-        if ( exchange == 'bitmart' ) {
+        // Fopr EXCHANGE_NAME_HERE, hange binary type from "blob" to "arraybuffer"
+        if ( exchange == 'EXCHANGE_NAME_HERE' ) {
         sockets[exchange].binaryType = "arraybuffer";
         }
    
@@ -708,18 +668,19 @@ function websocket_connect(exchange) {
 	sockets[exchange].onmessage = function(e) {
 	    
 	   
-	   // Check if response is JSON format or bitmart's compressed websocket data, otherwise presume just a regular string
+	   // Check if response is JSON format or compressed websocket data, otherwise presume just a regular string
 	   if ( is_json(e.data) == true ) {
 	   msg = JSON.parse(e.data);
 	   }
-	   else if ( exchange == 'bitmart' ) {
+	   else if ( exchange == 'EXCHANGE_NAME_HERE' ) {
        
        // NOTES ON DECOMPRESSING (ALSO NEEDED sockets[exchange].binaryType = "arraybuffer"; before opening websocket)
        
-       // https://developer-pro.bitmart.com/en/ws/spot_ws/compress.html
 	   // https://nodeca.github.io/pako/
 	   // https://stackoverflow.com/questions/4507316/zlib-decompression-client-side
 	   // https://stackoverflow.com/questions/57264517/pako-js-error-invalid-stored-block-lengths-when-trying-to-inflate-websocket-m
+	   
+	   // THESE IDIOTS CHANGED SOMETHING AT THE END OF 2/2022 IN THEIR API...FIGURE OUT WTF IT IS SOMEDAY, OR JUST REMOVE SUPPORT FOR THIS EXCHAGE!
        
           try {
               
@@ -742,13 +703,6 @@ function websocket_connect(exchange) {
 	   if ( debug_mode == 'on' ) {
 	   console.log(typeof msg); // DEBUGGING
 	   console.log(msg); // DEBUGGING
-	   }
-	   
-	   
-	   // Loopring requires a response of 'pong', when message is 'ping'
-	   if ( exchange == 'loopring' && msg == 'ping' ) {
-	   sockets[exchange].send('pong');
-	   //console.log('pong'); // DEBUGGING
 	   }
 	   
 	   
@@ -776,16 +730,14 @@ function websocket_connect(exchange) {
 		volume_raw = msg["q"];
 		   
 		base_volume = pair_volume('pairing', price_raw, volume_raw);
-      
 //////////////////////////////////////////////////////
-		high_raw = msg["h"];
-		low_raw = msg["l"];
-		pricechange_raw = msg["p"];
-		PCP_raw = msg["P"];
-    openprice_raw = msg["o"];
+high_raw = msg["h"];
+low_raw = msg["l"];
+pricechange_raw = msg["p"];
+PCP_raw = msg["P"];
+openprice_raw = msg["o"];
 
-///////////////////////////////////////////////////////	
-				 
+///////////////////////////////////////////////////////					 
 		}
 		// Kraken
 		else if ( exchange == 'kraken' && !msg["event"] && msg[2] == 'ticker' ) {
@@ -873,20 +825,6 @@ function websocket_connect(exchange) {
 		var base_volume;
 				 
 		}
-		// Loopring
-		else if ( exchange == 'loopring' && msg['data'] ) {
-				 
-		market_id = msg['data'][0];
-				 
-		price_raw = msg['data'][7];
-		
-		// RE-SET volume_raw / base_volume AS UNDEFINED, as loopring provides no 24hr volume data
-		
-		var volume_raw;
-		
-		var base_volume;
-				 
-		}
 		// Gateio
 		else if ( exchange == 'gateio' && msg['method'] == 'ticker.update' ) {
 				 
@@ -896,18 +834,6 @@ function websocket_connect(exchange) {
 		
 		volume_raw = msg['params'][1]['baseVolume'];
 		
-		base_volume = pair_volume('pairing', price_raw, volume_raw);
-				 
-		}
-		// Bitmart
-		else if ( exchange == 'bitmart' && msg['table'] == 'spot/ticker' ) {
-				 
-		market_id = msg["data"][0]["symbol"];
-				 
-		price_raw = msg["data"][0]["last_price"];
-				 
-		volume_raw = msg["data"][0]["base_volume_24h"];
-		   
 		base_volume = pair_volume('pairing', price_raw, volume_raw);
 				 
 		}
@@ -961,26 +887,13 @@ function websocket_connect(exchange) {
 		
 	//console.log('Connecting', e.reason);
 	   
-		setTimeout(function() {
+	   setTimeout(function() {
 		    
-	    $(".status_wrapper_" + exchange).css({ "display": "inline" });
+	   $(".status_wrapper_" + exchange).css({ "display": "inline" });
 	    
-	    $(".status_" + exchange).text("Reloading").css("color", "#FFFF00", "important");
+	   $(".status_" + exchange).text("Reloading").css("color", "#ffff00", "important");
 	   
-	       if ( exchange == 'loopring' ) {
-	           
-	       api[exchange] = void 0; // RE-SET API PARAMS AS UNDEFINED
-	       
-	       loopring_config(); // GET A NEW TEMP KEY FROM LOOPRING'S REST API
-	       
-	           setTimeout(function() {
-	           websocket_connect(exchange);
-	           }, 10000); // WAIT 10 SECONDS FOR GETTING A NEW TEMP KEY
-	       
-	       }
-	       else {
-		   websocket_connect(exchange);
-	       }
+	   websocket_connect(exchange);
 	       
 		
 	   }, 60000); // Reconnect after no data received for 1 minute
@@ -1011,4 +924,5 @@ function websocket_connect(exchange) {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
