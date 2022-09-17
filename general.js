@@ -930,15 +930,46 @@ set_max_decimals = dyn_max_decimals(price_raw, market_info);
 
 // Price with max decimals
 price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
+//////////////////////////////////////////////////////////////////////////
+high_rounded = parseFloat(high_raw).toFixed(set_max_decimals);
+low_rounded = parseFloat(low_raw).toFixed(set_max_decimals);
+PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimals);
+pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
+openprice_rounded = parseFloat(openprice_raw).toFixed(set_max_decimals);
+//////////////////////////////////////////////////////////////////////////
 
 // ADDITIONALLY remove any TRAILING zeros in any decimals (for UX)
 price = parseFloat(price_rounded);
+////////////////////////////////////////////////////////////////
+	high = parseFloat(high_rounded);
+	low = parseFloat(low_rounded);
+	PCP = parseFloat(PCP_rounded);
+	pricechange = parseFloat(pricechange_rounded);
+	openprice = parseFloat(openprice_rounded);
+	//////////////////////////////////////////////////////////////
 
     
     // IF we DID set using MINIMUM decimals, AND there are too few decimals in result
     if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     price = price.toFixed(set_min_decimals);
     }
+	/////////////////////////////////////////////////////////////////////
+	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    high = high.toFixed(set_min_decimals);
+    }
+	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    low = low.toFixed(set_min_decimals);
+    }
+	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    PCP = PCP.toFixed(set_min_decimals);
+    }
+	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    pricechange = pricechange.toFixed(set_min_decimals);
+    }
+	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    openprice = openprice.toFixed(set_min_decimals);
+    }
+	/////////////////////////////////////////////////////////////////////
         			       			   
         				
 // HTML for rendering
