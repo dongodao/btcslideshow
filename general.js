@@ -875,11 +875,16 @@ console.log('render_interface'); // DEBUGGING
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function update_ticker(update_key, market_id, asset, pairing, price_raw, base_volume, exchange=false) {
+function update_ticker(update_key, market_id, asset, pairing, price_raw, high_raw, low_raw, PCP_raw, pricechange_raw, openprice_raw, base_volume, exchange=false) {
 				 
 price_raw = scientificToDecimal(price_raw); // Convert scientific format to string (decimals), if needed
-
-   
+	////////////////////////////////////////////////////////////////////////////
+	high_raw = scientificToDecimal(high_raw);
+	low_raw = scientificToDecimal(low_raw);
+	PCP_raw = scientificToDecimal(PCP_raw);
+	pricechange_raw = scientificToDecimal(pricechange_raw);
+	openprice_raw = scientificToDecimal(openprice_raw);
+   //////////////////////////////////////////////////////////////////////////////////
    // Show or hide exchange / api status
    if ( exchange != false ) {
 	
@@ -908,7 +913,10 @@ market_symbol = market_info['asset_symbol'];
         			
 // Determine decimals [IF NEEDED, this is set to ticker_min_decimals OR ticker_max_decimals ALREADY in dyn_max_decimals()]
 set_max_decimals = dyn_max_decimals(price_raw, market_info);
-        	
+	
+	////////////////////////////////////////////
+	set_max_decimalsPCP = dyn_max_decimalsPCP(PCP_raw, market_info);
+        	////////////////////////////////////////////////////////////////////
         			
     // Set minimum decimals
     // If FIAT value under 100, AND IF set_max_decimals is less than or equal to 2,
@@ -933,7 +941,7 @@ price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
 //////////////////////////////////////////////////////////////////////////
 high_rounded = parseFloat(high_raw).toFixed(set_max_decimals);
 low_rounded = parseFloat(low_raw).toFixed(set_max_decimals);
-PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimals);
+PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimalsPCP);
 pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
 openprice_rounded = parseFloat(openprice_raw).toFixed(set_max_decimals);
 //////////////////////////////////////////////////////////////////////////
@@ -952,6 +960,9 @@ price = parseFloat(price_rounded);
     // IF we DID set using MINIMUM decimals, AND there are too few decimals in result
     if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     price = price.toFixed(set_min_decimals);
+	    ///////////////////////////////////////////////////////////////
+	    PCP = PCP.toFixed(set_min_decimalsPCP);
+	    /////////////////////////////////////////////////////////////
     }
 	/////////////////////////////////////////////////////////////////////
 	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
@@ -961,7 +972,7 @@ price = parseFloat(price_rounded);
     low = low.toFixed(set_min_decimals);
     }
 	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
-    PCP = PCP.toFixed(set_min_decimals);
+    PCP = PCP.toFixed(set_min_decimalsPCP);
     }
 	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     pricechange = pricechange.toFixed(set_min_decimals);
@@ -993,7 +1004,7 @@ ticker_item =
 //////////////////////////////////////////////////////////////////////////////////
                         PCP_item =
                          "<span class='spacing'>Change: " +
-                        number_commas(PCP, set_min_decimals, set_max_decimals) + "%" +
+                        number_commas(PCP, set_min_decimalsPCP, set_max_decimalsPCP) + "%" +
                          "</span>";
 			pricechange_item = 
 			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
