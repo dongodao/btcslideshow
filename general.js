@@ -1014,7 +1014,13 @@ $("#volume_" + update_key).html(volume_item);
      if ( monospace_check() == true ) {
         					
      monospace_rendering(document.querySelectorAll('#ticker_' + update_key)[0]);
-        				
+     /////////////////////////////////////////////////////////////
+				monospace_rendering(document.querySelectorAll('#high_' + update_key)[0]);
+				monospace_rendering(document.querySelectorAll('#low_' + update_key)[0]);
+				monospace_rendering(document.querySelectorAll('#PCP_' + update_key)[0]);
+				monospace_rendering(document.querySelectorAll('#pricechange_' + update_key)[0]);
+				monospace_rendering(document.querySelectorAll('#openprice_' + update_key)[0]);
+////////////////////////////////////////////////////////////////////////////////
         if ( typeof base_volume !== 'undefined' ) {
         monospace_rendering(document.querySelectorAll('#volume_' + update_key)[0]);
         }
