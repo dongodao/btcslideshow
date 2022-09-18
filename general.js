@@ -961,23 +961,11 @@ price = parseFloat(price_rounded);
     if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     price = price.toFixed(set_min_decimals);
 	    ///////////////////////////////////////////////////////////////
-	    PCP = PCP.toFixed(set_min_decimalsPCP);
-	    /////////////////////////////////////////////////////////////
-    }
-	/////////////////////////////////////////////////////////////////////
-	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
-    high = high.toFixed(set_min_decimals);
-    }
-	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
-    low = low.toFixed(set_min_decimals);
-    }
-	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     PCP = PCP.toFixed(set_min_decimalsPCP);
-    }
-	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
+    high = high.toFixed(set_min_decimals);
+    low = low.toFixed(set_min_decimals);
+    PCP = PCP.toFixed(set_min_decimalsPCP);
     pricechange = pricechange.toFixed(set_min_decimals);
-    }
-	    if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     openprice = openprice.toFixed(set_min_decimals);
     }
 	/////////////////////////////////////////////////////////////////////
