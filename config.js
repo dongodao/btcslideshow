@@ -38,53 +38,52 @@ var exchange_markets = []; // LEAVE ALONE, AND DON'T DELETE (REQUIRED!!)
 
 // Gate.io formatting example:  'MANA_USDT|SAMO_USDT'
 ////
-//// 
+////
 // Bitstamp markets (set to '' to disable)
 // !!BITSTAMP WEBSOCKET API ONLY SUPPORTS ONE ASSET!!
-exchange_markets['bitstamp'] = ''; 
+//exchange_markets['bitstamp'] = '';
 ////
 ////
-// Bitfinex markets (set to '' to disable) 
+// Bitfinex markets (set to '' to disable)
 // !!BITFINEX WEBSOCKET API ONLY SUPPORTS ONE ASSET!!
-exchange_markets['bitfinex'] = '';  
+//exchange_markets['bitfinex'] = '';
 ////
 ////
 // Coinbase markets (set to '' to disable)
-exchange_markets['coinbase'] = ''; 
-////exchange_markets['coinbase'] = 'ETH-USD|ETH-BTC|SOL-USD'; 
-
-//// 
+exchange_markets['coinbase'] = 'ETH-USD';
+////
+////
+// OKex markets (set to '' to disable)
+//exchange_markets['okex'] = '';
+////
+////
+// HitBTC markets (set to '' to disable)
+// !!HITBTC WEBSOCKET API ONLY SUPPORTS ONE ASSET!!
+//exchange_markets['hitbtc'] = '';
+////
+////
 // Coingecko markets (set to '' to disable)
-// USE COINGECKO'S API ID FOR EACH ASSET! (SEE COINGECKO ASSET PAGE'S INFO SECTION) 
+// USE COINGECKO'S API ID FOR EACH ASSET! (SEE COINGECKO ASSET PAGE'S INFO SECTION)
 // PAIRING ASSET MUST BE SUPPORTED BY COINGECKO'S 'vs_currencies' API PARAMETER!
 // FORMAT IS 'api-id-here:symbol/pairing'
-exchange_markets['coingecko'] = '';
-////exchange_markets['coingecko'] = 'solana:sol/btc|solana:sol/eth|genesysgo-shadow:shdw/usd|wrapped-cusd-allbridge-from-celo:acusd/usd';
-////
-// OKex markets (set to '' to disable) 
-exchange_markets['okex'] = '';
-////
-////
-// HitBTC markets (set to '' to disable) 
-// !!HITBTC WEBSOCKET API ONLY SUPPORTS ONE ASSET!!
-exchange_markets['hitbtc'] = ''; 
+//exchange_markets['coingecko'] = '';
 ////
 ////
 // Kucoin markets (set to '' to disable)
 // !!KUCOIN REQUIRES USING THE INSTALL SCRIPT!!
-exchange_markets['kucoin'] = ''; 
+//exchange_markets['kucoin'] = '';
 ////
 ////
 // Kraken markets (set to '' to disable)
-exchange_markets['kraken'] = ''; 
+//exchange_markets['kraken'] = 'BTC/USD';
 ////
 ////
 // Binance markets (set to '' to disable)
-exchange_markets['binance'] = 'btcusdt'; 
+//exchange_markets['binance'] = '';
 ////
 ////
-// Gateio markets (set to '' to disable) 
-exchange_markets['gateio'] = '';
+// Gateio markets (set to '' to disable)
+//exchange_markets['gateio'] = '';
 
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -94,12 +93,12 @@ exchange_markets['gateio'] = '';
 
 
 // Screen orientation (offset in degrees)
-var orient_screen = 0; // Normal (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
+var orient_screen = 180; // Normal (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
 
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 3; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (LARGE SCREEN)
+var vertical_position = 20; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (LARGE SCREEN)
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
@@ -108,15 +107,15 @@ var horizontal_position = 0; // Default = 10 (SMALL SCREEN), 0 (MEDIUM/LARGE SCR
 
 
 // Show exchange name in title (next to asset ticker symbol)
-var show_exchange_name = 'on'; // 'on' / 'off', Default = 'on'
+var show_exchange_name = 'off'; // 'on' / 'off', Default = 'on'
 
 
 // Show volume section EVEN IF NO VOLUME WAS PROVIDED
-var show_empty_volume = 'on'; // 'off' / 'on', Default = 'on'
+var show_empty_volume = 'off'; // 'off' / 'on', Default = 'on'
 
 
 // Show system temperature / memory stats (TOP LEFT corner of app screen, if device temps / RAM useage are available)
-var show_system_data = 'on'; // 'on' / 'off', Default = 'on'
+var show_system_data = 'off'; // 'on' / 'off', Default = 'on'
 ////
 // System data font size
 var system_data_size = 3.00; // Default = 3.00 (#CAN# BE DECIMALS HERE, AS WERE USING THE CSS vw STANDARD)
@@ -140,11 +139,11 @@ var ticker_size = 95; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (
 var arrow_size = 0.65; // Default = 0.65 (same height as ticker price text)
 ////
 // Spacing between ticker arrow, and ticker price text
-var arrow_spacing = 20; // Default = 10 (SMALL SCREEN), 20 (MEDIUM SCREEN), 40 (LARGE SCREEN)
+var arrow_spacing = 10; // Default = 10 (SMALL SCREEN), 20 (MEDIUM SCREEN), 40 (LARGE SCREEN)
 
 
 // Maximum decimal places for ticker values worth under 1.00 in unit value, for prettier / less-cluttered interface
-var ticker_max_decimals = 2; // Default = 6
+var ticker_max_decimals = 0; // Default = 6
 
 
 // Minimum decimal places for ANY ticker values,
@@ -160,7 +159,7 @@ var ticker_min_decimals = 0; // Default = 0
 // (interface examples: one = 10.9, tenth = 10.09, hundredth = 10.009, thousandth = 10.0009)
 // #FIAT# CURRENCY VALUES UNDER 100 #ARE FORCED TO 2 DECIMALS MINUMUM#, UNLESS USING 'thousandth'
 // #ALWAYS# OVERIDDEN BY ticker_min_decimals!
-var ticker_round_percent = 'tenth'; // (OF A PERCENT) 'one', 'tenth', 'hundredth', 'thousandth'
+var ticker_round_percent = 'one'; // (OF A PERCENT) 'one', 'tenth', 'hundredth', 'thousandth'
 ////
 // FORCE a FIXED MINIMUM amount of decimals on ticker price, CALCULATED OFF ABOVE ticker_round_percent SETTING
 // (ALWAYS SAME AMOUNT OF DECIMALS, #EVEN IF IT INCLUDES TRAILING ZEROS#) 
