@@ -150,8 +150,8 @@ arrow_border_width = Math.round(arrow_width / 2);
 	
 // Arrow height
 $("div.arrow_wrapper").css({ "height": arrow_height + "px" });
-$("span.buy").css({ "border-bottom": arrow_height + "px solid rgb(105, 199, 115)" });
-$("span.sell").css({ "border-top": arrow_height + "px solid rgb(199, 105, 105)" });
+$("span.buy").css({ "border-bottom": arrow_height + "px solid rgb(0, 255, 0)" }); //105, 199, 115
+$("span.sell").css({ "border-top": arrow_height + "px solid rgb(255, 0, 0)" });  //199,105,105
 
 // Arrow width
 $("div.arrow_wrapper").css({ "width": arrow_width + "px" });
@@ -517,8 +517,8 @@ market_key = js_safe_key(market_id, exchange);
         '<div class="high" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
         '<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
 //////////////////////////////////////////
-//        '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
-//      '<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
+        '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
+      '<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
         '<span class="openprice" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
 ////////////////////////////////////////////////
     
@@ -885,9 +885,9 @@ price_raw = scientificToDecimal(price_raw); // Convert scientific format to stri
 /////////////////////
 high_raw = scientificToDecimal(high_raw);
 low_raw = scientificToDecimal(low_raw);
-//PCP_raw = scientificToDecimal(PCP_raw);
-//pricechange_raw = scientificToDecimal(pricechange_raw);
 openprice_raw = scientificToDecimal(openprice_raw);
+PCP_raw = (price_raw - openprice_raw)/openprice_raw;
+pricechange_raw = openprice_raw - price_raw;
 /////////////////////////
 
    
@@ -945,8 +945,8 @@ price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
 //////////////////////////////////////////////
 high_rounded = parseFloat(high_raw).toFixed(set_max_decimals);
 low_rounded = parseFloat(low_raw).toFixed(set_max_decimals);
-//PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimals);
-//pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
+PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimals);
+pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
 openprice_rounded = parseFloat(openprice_raw).toFixed(set_max_decimals);
 //////////////////////////////////////////////
 
@@ -955,16 +955,11 @@ price = parseFloat(price_rounded);
 /////////////////////////////////////////////////////////
 high = parseFloat(high_rounded); // Remove any trailing zeros in decimals
 low = parseFloat(low_rounded); // Remove any trailing zeros in decimals
-//PCP = parseFloat(PCP_rounded); // Remove any trailing zeros in decimals
-//pricechange = parseFloat(pricechange_rounded); // Remove any trailing zeros in decimals
+PCP = parseFloat(PCP_rounded); // Remove any trailing zeros in decimals
+pricechange = parseFloat(pricechange_rounded); // Remove any trailing zeros in decimals
 openprice = parseFloat(openprice_rounded); // Remove any trailing zeros in decimals
 //////////////////////////////////////////////////////
 
-
-// ADDITIONALLY remove any TRAILING zeros in any decimals (for UX)
-price = parseFloat(price_rounded);
-
-    
     // IF we DID set using MINIMUM decimals, AND there are too few decimals in result
     if ( set_min_decimals > 0 && count_decimals(price) < set_min_decimals ) {
     price = price.toFixed(set_min_decimals);
@@ -990,14 +985,14 @@ ticker_item =
                          number_commas(low, set_min_decimals, set_max_decimals) +
                          "</span></div>";
 //////////////////////////////////////////////////////////////////////////////////
-//                        PCP_item =
-//                         "<span class='spacing'>Change: " +
-//                        number_commas(PCP, set_min_decimals, set_max_decimals) + "%" +
-//                         "</span>";
-//                      pricechange_item =
-//                       "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
-//                       number_commas(pricechange, set_min_decimals, set_max_decimals) +
-//                       "</span></div>";
+                        PCP_item =
+                         "<span class='spacing'>Change: " +
+                        number_commas(PCP, set_min_decimals, set_max_decimals) + "%" +
+                         "</span>";
+                      pricechange_item =
+                       "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
+                       number_commas(pricechange, set_min_decimals, set_max_decimals) +
+                       "</span></div>";
                         openprice_item =
                          "<span class='spacing'>Open: " + market_symbol +
                          number_commas(openprice, set_min_decimals, set_max_decimals) +
@@ -1041,8 +1036,8 @@ arrow_html(); // #MUST BE# AFTER TICKER RENDERING ABOVE
 //////////////////////////////////////////////////
                         $("#high_" + update_key).html(high_item);
                         $("#low_" + update_key).html(low_item);
-//                        $("#PCP_" + update_key).html(PCP_item);
-//                      $("#pricechange_" + update_key).html(pricechange_item);
+                        $("#PCP_" + update_key).html(PCP_item);
+                      $("#pricechange_" + update_key).html(pricechange_item);
                         $("#openprice_" + update_key).html(openprice_item);
 //////////////////////////////////////////////////
 
