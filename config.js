@@ -98,7 +98,7 @@ var orient_screen = 180; // Normal (upright) = 0, Flipped (upside down) = 180, S
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 20; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (LARGE SCREEN)
+var vertical_position = 0; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (LARGE SCREEN)
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
