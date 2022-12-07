@@ -122,7 +122,7 @@ var system_data_size = 3.00; // Default = 3.00 (#CAN# BE DECIMALS HERE, AS WERE 
 
 
 // Title font size
-var title_size = 45; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (LARGE SCREEN)
+var title_size = 40; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (LARGE SCREEN)
 
 
 // 24 hour volume font size
@@ -130,7 +130,7 @@ var volume_size = 35; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (L
 
 
 // Ticker font size
-var ticker_size = 95; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
+var ticker_size = 90; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
 
 
 // Ticker arrow size RATIO (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
