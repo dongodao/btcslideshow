@@ -1018,12 +1018,12 @@ ticker_item =
                          "</span></div>";
 
                         highchange_item =
-                         "<span class='spacing'>&nbsp &nbsp High: -" + market_symbol +
+                         "<span class='spacing'>&nbsp &nbsp High: - " + market_symbol +
                          number_commas(highchange, set_min_decimals, set_max_decimals) +
                          "</span>";
 
                         lowchange_item =
-                         "<span class='spacing'>&nbsp &nbsp Low: +" + market_symbol +
+                         "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
                          number_commas(lowchange, set_min_decimals, set_max_decimals) +
                          "</span></div>";
 
