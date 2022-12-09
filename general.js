@@ -958,10 +958,10 @@ price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
 high_rounded = parseFloat(high_raw).toFixed(set_max_decimals);
 low_rounded = parseFloat(low_raw).toFixed(set_max_decimals);
 openprice_rounded = parseFloat(openprice_raw).toFixed(set_max_decimals);
-PCP_rounded = parseFloat(PCP_raw).toFixed(set_max_decimals);
+PCP_rounded = parseFloat(PCP_raw).toFixed(1);
 pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
-highp_rounded = parseFloat(highp_raw).toFixed(set_max_decimals);
-lowp_rounded = parseFloat(lowp_raw).toFixed(set_max_decimals);
+highp_rounded = parseFloat(highp_raw).toFixed(1);
+lowp_rounded = parseFloat(lowp_raw).toFixed(1);
 highchange_rounded = parseFloat(highchange_raw).toFixed(set_max_decimals);
 lowchange_rounded = parseFloat(lowchange_raw).toFixed(set_max_decimals);
 
@@ -1009,12 +1009,12 @@ ticker_item =
                          "</span></div>";
                         highp_item =
                          "<span class='spacing'>&nbsp ( " +
-                         number_commas(highp, set_min_decimals, set_max_decimals) + "% )" +
+                         highp + "% )" +
                          "</span>";
 
                         lowp_item =
                          "<span class='spacing'>&nbsp ( + " +
-                         number_commas(lowp, set_min_decimals, set_max_decimals) + "% )" +
+                         lowp + "% )" +
                          "</span></div>";
 
                         highchange_item =
@@ -1026,13 +1026,10 @@ ticker_item =
                          "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
                          number_commas(lowchange, set_min_decimals, set_max_decimals) +
                          "</span></div>";
-
-//////////////////////////////////////////////////////////////////////////////////
-
    
                         PCP_item =
                          "<span class='spacing'>&nbsp ( " +
-                        number_commas(PCP, set_min_decimals , set_max_decimals) + "% )" +
+                        PCP + "% )" +
                          "</span>";
                         pricechange_item =
                          "<span class='spacing'> Open: " + market_symbol +
