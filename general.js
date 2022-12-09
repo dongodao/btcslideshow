@@ -1035,7 +1035,7 @@ ticker_item =
                         number_commas(PCP, set_min_decimals , set_max_decimals) + "% )" +
                          "</span>";
                         pricechange_item =
-                         "<span class='spacing'> Change: " + market_symbol +
+                         "<span class='spacing'> Open: " + market_symbol +
                         number_commas(pricechange, set_min_decimals, set_max_decimals) +
                          "</span></div>";
                         openprice_item =
