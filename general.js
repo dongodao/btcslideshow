@@ -1029,18 +1029,20 @@ ticker_item =
 
 //////////////////////////////////////////////////////////////////////////////////
 
+   
                         PCP_item =
-                         "<span class='spacing'>Change: " +
-                        number_commas(PCP, set_min_decimals, set_max_decimals) + "%" +
+                         "<span class='spacing'>&nbsp ( " +
+                        number_commas(PCP, set_min_decimals , set_max_decimals) + "% )" +
                          "</span>";
-                      pricechange_item =
-                       "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
-                       number_commas(pricechange, set_min_decimals, set_max_decimals) +
-                       "</span></div>";
+                        pricechange_item =
+                         "<span class='spacing'> Change: " + market_symbol +
+                        number_commas(pricechange, set_min_decimals, set_max_decimals) +
+                         "</span></div>";
                         openprice_item =
-                         "<span class='spacing'>Open: " + market_symbol +
+                         "<span class='spacing'>&nbsp &nbsp " + market_symbol +
                          number_commas(openprice, set_min_decimals, set_max_decimals) +
                          "</span></div>";
+
 
 
 //////////////////////////////////////////////////////////////////////////////////
