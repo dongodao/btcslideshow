@@ -991,7 +991,7 @@ lowchange = parseFloat(lowchange_rounded); // Remove any trailing zeros in decim
         				
 // HTML for rendering
 ticker_item =
-      "<div class='spacing'><div class='arrow_wrapper' style=''><span class='arrow " +
+      "<div class='arrow_wrapper' style=''><span class='arrow " +
       trade_side +
       "'></span></div><span class='tick_text'>" + market_symbol +
       number_commas(price, set_min_decimals, set_max_decimals) +
