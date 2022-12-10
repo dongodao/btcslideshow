@@ -122,7 +122,7 @@ var system_data_size = 3.00; // Default = 3.00 (#CAN# BE DECIMALS HERE, AS WERE 
 
 
 // Title font size
-var title_size = 40; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (LARGE SCREEN)
+var title_size = 60; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (LARGE SCREEN)
 
 
 // 24 hour volume font size
