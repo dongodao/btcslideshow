@@ -1031,16 +1031,15 @@ ticker_item =
                          "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
                          number_commas(lowchange, set_min_decimals, set_max_decimals) +
                          "</span></div>";
-   
-                        PCP_item =
-                         "<span class='spacing'>&nbsp ( " +
-                        PCP + "% )" +
-                         "</span>";
+  
 	if (tickerp > 0){
                         tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+		        PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" +
+                         "</span>";
 	}
 	else {
 		 tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+		 PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
 	}
                         pricechange_item =
                          "<span class='spacing'> Open: " + market_symbol +
