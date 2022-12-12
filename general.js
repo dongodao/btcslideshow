@@ -1036,7 +1036,12 @@ ticker_item =
                          "<span class='spacing'>&nbsp ( " +
                         PCP + "% )" +
                          "</span>";
-                        tickerp_item = "<span class='spacing'>&nbsp " + tickerp + "%" + "</span>";
+	if (tickerp > 0){
+                        tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+	}
+	else {
+		 tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+	}
                         pricechange_item =
                          "<span class='spacing'> Open: " + market_symbol +
                         number_commas(pricechange, set_min_decimals, set_max_decimals) +
