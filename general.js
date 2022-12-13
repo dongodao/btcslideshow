@@ -498,6 +498,8 @@ asset = "Ethereum ETH";
 if ( assetname == "BTC" ) {
 asset = "Bitcoin BTC";
 }
+	
+tickerpcolor = "#FFB600";
 //////////////////////////////////////////////////////////////////////
 	
 pairing = parsed_market_id.pairing;
@@ -512,35 +514,109 @@ market_key = js_safe_key(market_id, exchange);
     
 	'<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
 
-       '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
-        '<span class="tickerp" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
+        '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
+        '<span class="tickerp" style="font-size: '+volume_size+'px; color: login as: pi
+pi@10.0.0.214's password:
+Linux raspberrypi 5.10.11+ #1399 Thu Jan 28 12:02:28 GMT 2021 armv6l
 
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Dec 13 13:21:12 2022
+
+SSH is enabled and the default password for the 'pi' user has not been changed.
+This is a security risk - please login as the 'pi' user and type 'passwd' to set a new password.
+
+pi@raspberrypi:~ $ nano ~/slideshow-crypto-ticker/js/core/general.js
+pi@raspberrypi:~ $ ~/ticker-restart
+pi@raspberrypi:~ $ nano ~/slideshow-crypto-ticker/js/core/general.js
+pi@raspberrypi:~ $ ~/ticker-restart
+pi@raspberrypi:~ $ nano ~/slideshow-crypto-ticker/js/core/general.js
+pi@raspberrypi:~ $ ~/ticker-restart
+pi@raspberrypi:~ $ nano ~/slideshow-crypto-ticker/js/core/general.js
+  GNU nano 3.2                                         /home/pi/slideshow-crypto-ticker/js/core/general.js
+
+
+        $element.replaceChild($wrapper, $child);
+
+        }
+        else if ($child.nodeType === Node.ELEMENT_NODE) {
+        monospace_rendering($child);
+        }
+
+    }
+
+   }
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function ticker_html(market_id, exchange) {
+
+parsed_market_id = market_id_parser(market_id, exchange);
+
+asset = parsed_market_id.asset;
+
+////////////////////////////////////////////////////////////////////////////
+assetname = asset;
+
+if ( assetname == "ETH" ) {
+asset = "Ethereum ETH";
+}
+
+if ( assetname == "BTC" ) {
+asset = "Bitcoin BTC";
+}
+
+tickerpcolor = "#FFB600";
+//////////////////////////////////////////////////////////////////////
+
+pairing = parsed_market_id.pairing;
+
+market_key = js_safe_key(market_id, exchange);
+
+
+        // To assure appropriate ticker updated
+        if ( typeof market_key !== 'undefined' ) {
+
+        html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
+
+        '<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset$
+
+        '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
+        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_ke$
 ////////////////////////////////////////////
 
-        '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
+        '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key $
         '<span class="PCP" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
-        '<span class="openprice" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
+        '<span class="openprice" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span$
 
-        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '"></span>'+
-        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>'+
-        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></div>'+
+        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '$
+        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>$
+        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></$
 
-        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
+        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '">$
         '<span class="lowp" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
-        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
+        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></di$
 
 ////////////////////////////////////////////////
-    
-//	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
-	
-	'</div>';
-	
-	$(html).appendTo( "#ticker_window" );
-	
-	}
-	else {
-	return false;
-	}
+
+//      '<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
+
+        '</div>';
+
+        $(html).appendTo( "#ticker_window" );
+
+        }
+        else {
+        return false;
+        }
 
 
 }
@@ -1018,8 +1094,7 @@ ticker_item =
                          "</span>";
 
                         lowp_item =
-                         "<span class='spacing'>&nbsp ( + " +
-                         lowp + "% )" +
+                         "<span class='spacing'>&nbsp ( + " + lowp + "% )" +
                          "</span></div>";
 
                         highchange_item =
@@ -1034,17 +1109,16 @@ ticker_item =
   
 	if (tickerp > 0){
                         tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
-		        PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" +
-                         "</span>";
+		        PCP_item = "<span class='spacing'>&nbsp ( + "+ PCP + "% )" + "</span>";
+			pricechange_item = "<span class='spacing'> Open: +" + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 	}
 	else {
-		 tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+		 tickerp_item = "<span class='spacing'>+" + tickerp + "%" + "</span>";
 		 PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
+		 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+
 	}
-                        pricechange_item =
-                         "<span class='spacing'> Open: " + market_symbol +
-                        number_commas(pricechange, set_min_decimals, set_max_decimals) +
-                         "</span></div>";
+
                         openprice_item =
                          "<span class='spacing'>&nbsp &nbsp " + market_symbol +
                          number_commas(openprice, set_min_decimals, set_max_decimals) +
