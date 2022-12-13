@@ -510,14 +510,16 @@ market_key = js_safe_key(market_id, exchange);
         // To assure appropriate ticker updated
         if ( typeof market_key !== 'undefined' ) {
 
+      
         html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
 
-        '<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset$
+        '<div class="title" style="font-size: '+title_size+'px; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset +
+        '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
 
         '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
-        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
 
-////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
 
         '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
         '<span class="PCP" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
@@ -530,8 +532,9 @@ market_key = js_safe_key(market_id, exchange);
         '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
         '<span class="lowp" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
         '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
-		
+
 /////////////////////////////////////////////////////////////////////////////
+
 
 //      '<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 
