@@ -1037,12 +1037,12 @@ ticker_item =
                          "</span></div>";
   
 	if (tickerp > 0){
-                        tickerp_item = "<span class='spacing'>&nbsp +" + tickerp + "%" + "</span>";
+                        tickerp_item = "<span class='spacing'>&nbsp + " + tickerp + "%" + "</span>";
 		        PCP_item = "<span class='spacing'>&nbsp ( + "+ PCP + "% )" + "</span>";
-			pricechange_item = "<span class='spacing'> Open: +" + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+			pricechange_item = "<span class='spacing'> Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 	}
 	else {
-		 tickerp_item = "<span class='spacing'>+" + tickerp + "%" + "</span>";
+		 tickerp_item = "<span class='spacing'> " + tickerp + "%" + "</span>";
 		 PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
 		 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 
