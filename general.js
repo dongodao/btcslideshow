@@ -515,22 +515,23 @@ market_key = js_safe_key(market_id, exchange);
         '<div class="title" style="font-size: '+title_size+'px; color: #f3aa0c; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset$
 
         '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
-        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_ke$
+        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
+
 ////////////////////////////////////////////
 
-        '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key $
+        '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
         '<span class="PCP" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
-        '<span class="openprice" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span$
+        '<span class="openprice" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
 
-        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '$
-        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>$
-        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></$
+        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '"></span>'+
+        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>'+
+        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></div>'+
 
-        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '">$
+        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
         '<span class="lowp" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
-        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></di$
-
-////////////////////////////////////////////////
+        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
+		
+/////////////////////////////////////////////////////////////////////////////
 
 //      '<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 
