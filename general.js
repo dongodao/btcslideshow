@@ -499,7 +499,9 @@ if ( assetname == "BTC" ) {
 asset = "Bitcoin BTC";
 }
 
-tickerpcolor = "#FFB600";
+let tickerp;
+if (tickerp == null) { tickerpcolor = "#FFB600";}
+
 //////////////////////////////////////////////////////////////////////
 
 pairing = parsed_market_id.pairing;
@@ -1023,7 +1025,7 @@ ticker_item =
                          "</span>";
 
                         lowp_item =
-                         "<span class='spacing'>&nbsp ( + " + lowp + "% )" +
+                         "<span class='spacing'>&nbsp ( +" + lowp + "% )" +
                          "</span></div>";
 
                         highchange_item =
@@ -1037,12 +1039,12 @@ ticker_item =
                          "</span></div>";
   
 	if (tickerp > 0){
-                        tickerp_item = "<span class='spacing'>&nbsp + " + tickerp + "%" + "</span>";
-		        PCP_item = "<span class='spacing'>&nbsp ( + "+ PCP + "% )" + "</span>";
-			pricechange_item = "<span class='spacing'> Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+                        tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
+		        PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" + "</span>";
+			pricechange_item = "<span class='spacing'> Open: +" + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 	}
 	else {
-		 tickerp_item = "<span class='spacing'> " + tickerp + "%" + "</span>";
+		 tickerp_item = "<span class='spacing' style='color: #f3160c;'> " + tickerp + "%" + "</span>";
 		 PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
 		 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 
