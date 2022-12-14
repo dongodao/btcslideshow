@@ -1041,7 +1041,7 @@ ticker_item =
 	if (tickerp > 0){
                         tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
 		        PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" + "</span>";
-			pricechange_item = "<span class='spacing'> Open: +" + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+			pricechange_item = "<span class='spacing'> Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 	}
 	else {
 		 tickerp_item = "<span class='spacing' style='color: #f3160c;'> " + tickerp + "%" + "</span>";
