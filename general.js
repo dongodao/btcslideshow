@@ -176,18 +176,21 @@ function console_alert() {
         window.api_alert = 1;
     }
 
+
 console.log(' ');
 console.log('IMPROPER APP INSTALLATION DETECTED!');
 console.log(' ');
 console.log('To have access to ALL the features in this app, please make sure you have done ALL of the following...');
 console.log(' ');
-console.log('1) Open the "Terminal" app in your operating system interface menu, or login via remote terminal, AS THE USER YOU WANT RUNNING THE APP (user mu$
+console.log('1) Open the "Terminal" app in your operating system interface menu, or login via remote terminal, AS THE USER YOU WANT RUNNING THE APP (user must have sudo privileges).');
 console.log(' ');
 console.log('2) In the terminal, copy / paste / run this command, THEN REBOOT when finished installing the app:');
 console.log('wget --no-cache -O TICKER-INSTALL.bash https://tinyurl.com/install-crypto-ticker;chmod +x TICKER-INSTALL.bash;sudo ./TICKER-INSTALL.bash');
 console.log(' ');
-console.log('3) ON REBOOT / TICKER STARTUP, you are logged-in to the GRAPHICAL DESKTOP INTERFACE, #AND# are running the app as the SAME USER YOU INSTALLED A$
+console.log('3) ON REBOOT / TICKER STARTUP, you are logged-in to the GRAPHICAL DESKTOP INTERFACE, #AND# are running the app as the SAME USER YOU INSTALLED AS.');
 console.log(' ');
+
+
 
 }
 
@@ -514,25 +517,26 @@ market_key = js_safe_key(market_id, exchange);
 
         html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
 
-        '<div class="title" style="font-size: '+title_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset$
-        '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key$
+        '<div class="title" style="font-size: '+title_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset +
+        '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
 
         '<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span id="ticker_' + market_key + '"></span>'+
 
 //////////////////////////////////////////////////////////////////////////////////
-        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_ke$
+        '<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
 
         '<div class="pricechange" style="font-size: 27px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
         '<span class="PCP" style="font-size: 27px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
         '<span class="openprice" style="font-size: 27px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
 
-        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '$
-        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>$
-        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></$
+        '<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '"></span>'+
+        '<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>'+
+        '<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></div>'+
 
-        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '">$
+        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
         '<span class="lowp" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
-        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></di$
+        '<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
+
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -790,7 +794,8 @@ function reload_check() {
 
 
                                         if ( reload_countdown > 0 ) {
-                            $("#internet_alert").html("Internet back online, reloading...<br />(in " + reload_countdown + " seconds)").css("color", "#ffff00$
+                                                $("#internet_alert").html("Internet back online, reloading...<br />(in " + reload_countdown + " seconds)").css("color", "#ffff00");
+
                                         }
                                         else if ( reload_countdown === 0 ) {
                             reload_queued = false; // Just for clean / readable code's sake
@@ -1050,16 +1055,15 @@ ticker_item =
                          number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
                         }
 
-
-        if (tickerp > 0){
+      if (tickerp > 0){
                         tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
                         PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" + "</span>";
-                        pricechange_item = "<span class='spacing'>Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals)$
+                        pricechange_item = "<span class='spacing'>Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
         }
         else {
                  tickerp_item = "<span class='spacing' style='color: #f3160c;'> " + tickerp + "%" + "</span>";
                  PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
-                 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</sp$
+                 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
 
         }
 
@@ -1067,6 +1071,8 @@ ticker_item =
                          "<span class='spacing'>&nbsp &nbsp " + market_symbol +
                          number_commas(openprice, set_min_decimals, set_max_decimals) +
                          "</span></div>";
+
+
 
 
 
