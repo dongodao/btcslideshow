@@ -533,9 +533,9 @@ market_key = js_safe_key(market_id, exchange);
         '<span class="highp" style="font-size: '+volume_size+'px; color: #00FF00; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>'+
         '<span class="high" style="font-size: '+volume_size+'px; color: #00A300; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></div>'+
 
-        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #F7F749; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
+        '<div class="lowchange" style="font-size: '+volume_size+'px; color: #B20000; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
         '<span class="lowp" style="font-size: '+volume_size+'px; color: #FF0000; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
-        '<span class="low" style="font-size: '+volume_size+'px; color: #F7F749; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
+        '<span class="low" style="font-size: '+volume_size+'px; color: #B20000; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1017,12 +1017,12 @@ ticker_item =
 
         if (highchange > lowchange) {
                         highp_item =
-                         "<span class='spacing' style='font-size: 27px; color: #BFCF5B; '>&nbsp ( " + highp + "% )" + "</span>";
+                         "<span class='spacing' style='font-size: 27px; color: #CCCC00; '>&nbsp ( " + highp + "% )" + "</span>";
                         high_item =
-                         "<span class='spacing' style='font-size: 27px; color: #BFCF5B; '>&nbsp " + market_symbol +
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>&nbsp " + market_symbol +
                          number_commas(high, set_min_decimals, set_max_decimals) + "</span>";
                          highchange_item =
-                         "<span class='spacing' style='font-size: 27px; color: #BFCF5B; '>High: - " + market_symbol +
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>High: - " + market_symbol +
                          number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
 
                         lowp_item =
@@ -1046,12 +1046,12 @@ ticker_item =
                          number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
 
                         lowp_item =
-                         "<span class='spacing' style='font-size: 27px; color: #FF5607; '>&nbsp ( +" + lowp + "% )" + "</span></div>";
+                         "<span class='spacing' style='font-size: 27px; color: #FF5F00; '>&nbsp ( +" + lowp + "% )" + "</span></div>";
                         low_item =
-                         "<span class='spacing' style='font-size: 27px; color: #FF5607; '>&nbsp " + market_symbol +
+                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp " + market_symbol +
                          number_commas(low, set_min_decimals, set_max_decimals) + "</span></div>";
                         lowchange_item =
-                         "<span class='spacing' style='font-size: 27px; color: #FF5607; '>&nbsp &nbsp Low: + " + market_symbol +
+                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp &nbsp Low: + " + market_symbol +
                          number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
                         }
 
