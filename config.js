@@ -143,7 +143,7 @@ var arrow_spacing = 10; // Default = 10 (SMALL SCREEN), 20 (MEDIUM SCREEN), 40 (
 
 
 // Maximum decimal places for ticker values worth under 1.00 in unit value, for prettier / less-cluttered interface
-var ticker_max_decimals = 0; // Default = 6
+var ticker_max_decimals = 2; // Default = 6
 
 
 // Minimum decimal places for ANY ticker values,
@@ -200,7 +200,7 @@ var rest_api_refresh = 5; // Default = 5
 
 // SECONDS between "slideshowing" multiple tickers (if multiple assets configured)
 // SET TO 0 FOR AUTO MODE (trys to show all tickers in 1 minute, BUT has a 5 second per-ticker MINIMUM)
-var slideshow_speed = 9; // Default = 9
+var slideshow_speed = 15; // Default = 9
 
 
 // Slideshow transition speed (fade out / fade in) IN SECONDS (can be decimals)
@@ -226,7 +226,7 @@ var upgrade_api_refresh = 1; // Default = 1
 // Enable / disable upgrade check / notice (TOP RIGHT corner of app screen, when an newer version is available for download)
 // (Checks latest release version via github.com API endpoint value "tag_name" 
 // @ https://api.github.com/repos/taoteh1221/Slideshow_Crypto_Ticker/releases/latest)
-var upgrade_notice = 'on'; // 'on' / 'off', Default = 'on'
+var upgrade_notice = 'off'; // 'on' / 'off', Default = 'on'
 
 
 // DEBUG MODE (turns on console logging for certain logic)
