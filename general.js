@@ -499,6 +499,11 @@ asset = "Ethereum ETH";
 if ( assetname == "BTC" ) {
 asset = "Bitcoin BTC";
 }
+ 
+if ( assetname == "SOL" ) {
+asset = "Solana SOL";
+}
+
 
 let tickerp;
 if (tickerp == null) { tickerpcolor = "#FFB600";}
@@ -950,9 +955,9 @@ set_max_decimals = dyn_max_decimals(price_raw, market_info);
     // Set minimum decimals
     // If FIAT value under 100, AND IF set_max_decimals is less than or equal to 2,
     // then force 2 FIXED decimals ALWAYS for #FIAT VALUES# UX
-    if ( price_raw < 1 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
+    if ( price_raw < 100 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
     set_max_decimals = 2; // For number_commas() logic (#MUST# BE RESET HERE TOO, #CANNOT# BE LESS THAN THE MINIMUM!!)
-    set_min_decimals = 2; // For number_commas() logic
+    set_min_decimals = 0; // For number_commas() logic
     }
     // If DYNAMIC fixed minimum decimals configured in user config
     // (ticker_min_decimals ALREADY CHECKED IN set_max_decimals [with dyn_max_decimals()])
