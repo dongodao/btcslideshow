@@ -719,7 +719,16 @@ function websocket_connect(exchange) {
 		volume_raw = msg["volume_24h"];
 		   
 		base_volume = pair_volume('asset', price_raw, volume_raw);
-				 
+			
+//////////////////////////////////////////////////////
+                high_raw = msg["high_24h"];
+                low_raw = msg["low_24h"];
+        //      pricechange_raw = msg["p"];
+        //      PCP_raw = msg["P"];
+                openprice_raw = msg["open_24h"];
+
+///////////////////////////////////////////////////////
+		 
 		}
 		// Binance
 		else if ( exchange == 'binance' && !msg["id"] && msg["e"] == '24hrTicker' ) {
@@ -731,6 +740,15 @@ function websocket_connect(exchange) {
 		volume_raw = msg["q"];
 		   
 		base_volume = pair_volume('pairing', price_raw, volume_raw);
+
+//////////////////////////////////////////////////////
+high_raw = msg["h"];
+low_raw = msg["l"];
+pricechange_raw = msg["p"];
+PCP_raw = msg["P"];
+openprice_raw = msg["o"];
+
+///////////////////////////////////////////////////////	
 				 
 		}
 		// Kraken
@@ -743,7 +761,15 @@ function websocket_connect(exchange) {
 		volume_raw = msg[1]["v"][1];
 		   
 		base_volume = pair_volume('asset', price_raw, volume_raw);
-				 
+
+//////////////////////////////////////////////////////
+                high_raw = msg[1]["h"][1];
+                low_raw = msg[1]["l"][1];
+//              pricechange_raw = msg["p"];
+//              PCP_raw = msg["P"];
+                openprice_raw = msg[1]["o"][1];
+
+///////////////////////////////////////////////////////
 		}
 		// HitBTC
 		else if ( exchange == 'hitbtc' && !msg["result"] && msg["method"] == 'ticker' ) {
