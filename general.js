@@ -150,8 +150,11 @@ arrow_border_width = Math.round(arrow_width / 2);
 	
 // Arrow height
 $("div.arrow_wrapper").css({ "height": arrow_height + "px" });
-$("span.buy").css({ "border-bottom": arrow_height + "px solid rgb(105, 199, 115)" });
-$("span.sell").css({ "border-top": arrow_height + "px solid rgb(199, 105, 105)" });
+
+/////////////////////////////////////////////////
+$("span.buy").css({ "border-bottom": arrow_height + "px solid rgb(0, 255, 0)" }); //105, 199, 115
+$("span.sell").css({ "border-top": arrow_height + "px solid rgb(255, 0, 0)" });  //199,105,105
+/////////////////////////////////////////////////
 
 // Arrow width
 $("div.arrow_wrapper").css({ "width": arrow_width + "px" });
@@ -498,6 +501,14 @@ assetname = "Ethereum ETH";
 if ( assetname == "BTC" ) {
 assetname = "Bitcoin BTC";
 }
+
+if ( assetname == "SOL" ) {
+    assetname = "Solana SOL";
+    }
+
+let tickerp;
+if (tickerp == null) { tickerpcolor = "#FFB600";}
+
 //////////////////////////////////////////////////////////////////////
   
 pairing = parsed_market_id.pairing;
@@ -510,19 +521,29 @@ market_key = js_safe_key(market_id, exchange);
 
 	html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
     
-	'<div class="title" style="font-size: '+title_size+'px; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
+	'<div class="title" style="font-size: '+title_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
 	
-	'<div class="ticker" style="font-size: '+ticker_size+'px; font-weight: '+font_weight+';" id="ticker_' + market_key + '"></div>'+
+	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span  id="ticker_' + market_key + '"></span>'+
     
-////////////////////////////////////////////
-	'<div class="high" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span>'+
-	'<span class="low" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';" id="low_' + market_key + '"</span></div>'+
-//////////////////////////////////////////
-        '<div class="PCP" style="font-size: '+volume_size+'px; color: #0cefc3; font-weight: '+font_weight+';"><span id="PCP_' + market_key + '"></span>'+
-	'<span class="pricechange" style="font-size: '+volume_size+'px; color: #6133FF; font-weight: '+font_weight+';" id="pricechange_' + market_key + '"</span></div>'+
-        '<span class="openprice" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
-//////////////////////////////////////////
-//	'<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
+//////////////////////////////////////////////////////////////////////////////////
+'<span class="tickerp" style="font-size: '+volume_size+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span>'+
+
+'<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
+'<span class="PCP" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
+'<span class="openprice" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';" id="openprice_' + market_key + '"</span></div>'+
+
+'<div class="highchange" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="highchange_' + market_key + '"></span>'+
+'<span class="highp" style="font-size: '+volume_size+'px; color: #16f30c; font-weight: '+font_weight+';"><span id="highp_' + market_key + '"></span>'+
+'<span class="high" style="font-size: '+volume_size+'px; color: #0c8207; font-weight: '+font_weight+';"><span id="high_' + market_key + '"></span></div>'+
+
+'<div class="lowchange" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="lowchange_' + market_key + '"></span>'+
+'<span class="lowp" style="font-size: '+volume_size+'px; color: #f3160c; font-weight: '+font_weight+';"><span id="lowp_' + market_key + '"></span>'+
+'<span class="low" style="font-size: '+volume_size+'px; color: #aa0f08; font-weight: '+font_weight+';"><span id="low_' + market_key + '"></span></div>'+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+//      '<div class="volume" style="font-size: '+volume_size+'px; font-weight: '+font_weight+';" id="volume_' + market_key + '"></div>'+
 	
 	'</div>';
 	
@@ -882,6 +903,20 @@ function update_ticker(update_key, market_id, asset, pairing, price_raw, base_vo
 				 
 price_raw = scientificToDecimal(price_raw); // Convert scientific format to string (decimals), if needed
 
+/////////////////////
+high_raw = scientificToDecimal(high_raw);
+low_raw = scientificToDecimal(low_raw);
+openprice_raw = scientificToDecimal(openprice_raw);
+PCP_raw = (price_raw - openprice_raw)/openprice_raw*100;
+tickerp_raw = (price_raw - openprice_raw)/openprice_raw*100;
+pricechange_raw = price_raw - openprice_raw;
+highp_raw = (price_raw - high_raw)/high_raw*100;
+lowp_raw = (price_raw - low_raw)/low_raw*100;
+highchange_raw = high_raw - price_raw;
+lowchange_raw = price_raw - low_raw;
+
+/////////////////////////
+
    
    // Show or hide exchange / api status
    if ( exchange != false ) {
@@ -916,7 +951,9 @@ set_max_decimals = dyn_max_decimals(price_raw, market_info);
     // Set minimum decimals
     // If FIAT value under 100, AND IF set_max_decimals is less than or equal to 2,
     // then force 2 FIXED decimals ALWAYS for #FIAT VALUES# UX
-    if ( price_raw < 100 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
+    //////////////////////////////////////////////////////////////
+    if ( price_raw < 1 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
+    /////////////////////////////////////////////////////////////////    
     set_max_decimals = 2; // For number_commas() logic (#MUST# BE RESET HERE TOO, #CANNOT# BE LESS THAN THE MINIMUM!!)
     set_min_decimals = 2; // For number_commas() logic
     }
@@ -934,8 +971,35 @@ set_max_decimals = dyn_max_decimals(price_raw, market_info);
 // Price with max decimals
 price_rounded = parseFloat(price_raw).toFixed(set_max_decimals);
 
+//////////////////////////////////////////////
+high_rounded = parseFloat(high_raw).toFixed(set_max_decimals);
+low_rounded = parseFloat(low_raw).toFixed(set_max_decimals);
+openprice_rounded = parseFloat(openprice_raw).toFixed(set_max_decimals);
+PCP_rounded = parseFloat(PCP_raw).toFixed(1);
+tickerp_rounded = parseFloat(tickerp_raw).toFixed(1);
+pricechange_rounded = parseFloat(pricechange_raw).toFixed(set_max_decimals);
+highp_rounded = parseFloat(highp_raw).toFixed(1);
+lowp_rounded = parseFloat(lowp_raw).toFixed(1);
+highchange_rounded = parseFloat(highchange_raw).toFixed(set_max_decimals);
+lowchange_rounded = parseFloat(lowchange_raw).toFixed(set_max_decimals);
+
+//////////////////////////////////////////////
+
 // ADDITIONALLY remove any TRAILING zeros in any decimals (for UX)
 price = parseFloat(price_rounded);
+/////////////////////////////////////////////////////////
+high = parseFloat(high_rounded); // Remove any trailing zeros in decimals
+low = parseFloat(low_rounded); // Remove any trailing zeros in decimals
+openprice = parseFloat(openprice_rounded); // Remove any trailing zeros in decimals
+PCP = parseFloat(PCP_rounded); // Remove any trailing zeros in decimals
+tickerp = parseFloat(tickerp_rounded);
+pricechange = parseFloat(pricechange_rounded); // Remove any trailing zeros in decimals
+highp = parseFloat(highp_rounded); // Remove any trailing zeros in decimals
+lowp = parseFloat(lowp_rounded); // Remove any trailing zeros in decimals
+highchange = parseFloat(highchange_rounded); // Remove any trailing zeros in decimals
+lowchange = parseFloat(lowchange_rounded); // Remove any trailing zeros in decimals
+
+//////////////////////////////////////////////////////
 
     
     // IF we DID set using MINIMUM decimals, AND there are too few decimals in result
@@ -982,26 +1046,48 @@ ticker_item =
         				 
 ////////////////////////////////////////////////////////////////////////// 
 			high_item = 
-			 "<span class='spacing'>High: " + market_symbol +
-			 number_commas(high, high_decimals) +
+			 "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+			 number_commas(high, set_min_decimals, set_max_decimals) +
 			 "</span>"; 
 
 			low_item = 
-			 "<span class='spacing'>&nbsp &nbsp &nbsp Low: " + market_symbol +
-			 number_commas(low, low_decimals) +
+			 "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+			 number_commas(low, set_min_decimals, set_max_decimals) +
 			 "</span></div>"; 
-//////////////////////////////////////////////////////////////////////////////////
-      PCP_item =
-      "<span class='spacing'>Change: " +
-      number_commas(PCP, PCP_decimals) + "%" +
+highp_item =
+      "<span class='spacing'>&nbsp ( " +
+      highp + "% )" +
       "</span>";
-			pricechange_item = 
-			 "<span class='spacing'> &nbsp &nbsp &nbsp " + market_symbol +
-			 number_commas(pricechange, pricechange_decimals) +
+			
+                        lowp_item = 
+			 "<span class='spacing'>&nbsp ( +" + lowp + "% )" +
 			 "</span></div>"; 
+
+                        highchange_item =
+                         "<span class='spacing'>&nbsp &nbsp High: - " + market_symbol +
+                         number_commas(highchange, set_min_decimals, set_max_decimals) +
+                         "</span>";
+
+                        lowchange_item =
+                         "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
+                         number_commas(lowchange, set_min_decimals, set_max_decimals) +
+                         "</span></div>";
+  
+	if (tickerp > 0){
+                        tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
+		        PCP_item = "<span class='spacing'>&nbsp ( +"+ PCP + "% )" + "</span>";
+			pricechange_item = "<span class='spacing'> Open: + " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+	}
+	else {
+		 tickerp_item = "<span class='spacing' style='color: #f3160c;'> " + tickerp + "%" + "</span>";
+		 PCP_item = "<span class='spacing'>&nbsp ( " + PCP + "% )" + "</span>";
+		 pricechange_item = "<span class='spacing'> Open: " + market_symbol + number_commas(pricechange, set_min_decimals, set_max_decimals) + "</span></div>";
+
+	}
+
       openprice_item =
-      "<span class='spacing'>Close: " + market_symbol +
-      number_commas(openprice, openprice_decimals) +
+      "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+      number_commas(openprice, set_min_decimals, set_max_decimals) +
       "</span></div>";
 
  
@@ -1038,6 +1124,21 @@ ticker_item =
 $("#ticker_" + update_key).html(ticker_item);
         			
 arrow_html(); // #MUST BE# AFTER TICKER RENDERING ABOVE
+
+
+                        $("#high_" + update_key).html(high_item);
+                        $("#low_" + update_key).html(low_item);
+                        $("#PCP_" + update_key).html(PCP_item);
+                        $("#tickerp_" + update_key).html(tickerp_item);
+                        $("#pricechange_" + update_key).html(pricechange_item);
+                        $("#openprice_" + update_key).html(openprice_item);
+                        $("#highp_" + update_key).html(highp_item);
+                        $("#lowp_" + update_key).html(lowp_item);
+                        $("#highchange_" + update_key).html(highchange_item);
+                        $("#lowchange_" + update_key).html(lowchange_item);
+
+//////////////////////////////////////////////////
+
         				
 $("#volume_" + update_key).html(volume_item);
         				
