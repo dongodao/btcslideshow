@@ -505,7 +505,8 @@ assetname = "Bitcoin BTC";
 if ( assetname == "SOL" ) {
     assetname = "Solana SOL";
     }
-
+asset = assetname;
+	
 let tickerp;
 if (tickerp == null) { tickerpcolor = "#FFB600";}
 
