@@ -1046,33 +1046,33 @@ ticker_item =
       "</span></div>";
         				 
 ////////////////////////////////////////////////////////////////////////// 
-			high_item = 
-			 "<span class='spacing'>&nbsp &nbsp " + market_symbol +
-			 number_commas(high, set_min_decimals, set_max_decimals) +
-			 "</span>"; 
+high_item = 
+ "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+ number_commas(high, set_min_decimals, set_max_decimals) +
+ "</span>"; 
 
-			low_item = 
-			 "<span class='spacing'>&nbsp &nbsp " + market_symbol +
-			 number_commas(low, set_min_decimals, set_max_decimals) +
-			 "</span></div>"; 
+low_item = 
+ "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+ number_commas(low, set_min_decimals, set_max_decimals) +
+ "</span></div>"; 
 highp_item =
       "<span class='spacing'>&nbsp ( " +
       highp + "% )" +
       "</span>";
 			
-                        lowp_item = 
-			 "<span class='spacing'>&nbsp ( +" + lowp + "% )" +
-			 "</span></div>"; 
+lowp_item = 
+ "<span class='spacing'>&nbsp ( +" + lowp + "% )" +
+ "</span></div>"; 
 
-                        highchange_item =
-                         "<span class='spacing'>&nbsp &nbsp High: - " + market_symbol +
-                         number_commas(highchange, set_min_decimals, set_max_decimals) +
-                         "</span>";
+highchange_item =
+ "<span class='spacing'>&nbsp &nbsp High: - " + market_symbol +
+ number_commas(highchange, set_min_decimals, set_max_decimals) +
+ "</span>";
 
-                        lowchange_item =
-                         "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
-                         number_commas(lowchange, set_min_decimals, set_max_decimals) +
-                         "</span></div>";
+lowchange_item =
+ "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
+ number_commas(lowchange, set_min_decimals, set_max_decimals) +
+ "</span></div>";
   
 	if (tickerp > 0){
                         tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
@@ -1086,10 +1086,10 @@ highp_item =
 
 	}
 
-      openprice_item =
-      "<span class='spacing'>&nbsp &nbsp " + market_symbol +
-      number_commas(openprice, set_min_decimals, set_max_decimals) +
-      "</span></div>";
+openprice_item =
+ "<span class='spacing'>&nbsp &nbsp " + market_symbol +
+ number_commas(openprice, set_min_decimals, set_max_decimals) +
+ "</span></div>";
 
  
 //////////////////////////////////////////////////////////////////////////////////
