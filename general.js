@@ -1045,34 +1045,49 @@ ticker_item =
       number_commas(price, set_min_decimals, set_max_decimals) +
       "</span></div>";
         				 
+ /////////////////////////////////////////////////////////////////////////
+
+        if (highchange > lowchange) {
+                        highp_item =
+                         "<span class='spacing' style='font-size: 27px; color: #CCCC00; '>&nbsp ( " + highp + "% )" + "</span>";
+                        high_item =
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>&nbsp " + market_symbol +
+                         number_commas(high, set_min_decimals, set_max_decimals) + "</span>";
+                         highchange_item =
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>High: - " + market_symbol +
+                         number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
+
+                        lowp_item =
+                         "<span class='spacing' style='font-size: 42px;'>&nbsp ( +" + lowp + "% )" + "</span></div>";
+                        low_item =
+                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +
+                         number_commas(low, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 42px; color: #FFF01F;'> :-(" + "</span></div>";
+                        lowchange_item =
+                         "<span class='spacing' style='font-size: 42px;'>Low: + " + market_symbol +
+                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
+                        }
+
+        else {
+                        highp_item =
+                         "<span class='spacing' style='font-size: 42px;'>&nbsp ( " + highp + "% )" + "</span>";
+                        high_item =
+                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +
+                         number_commas(high, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 42px; color: #CCFF00;'> :-)" + "</span>";
+                         highchange_item =
+                         "<span class='spacing' style='font-size: 42px;'>&nbsp &nbsp High: - " + market_symbol +
+                         number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
+
+                        lowp_item =
+                         "<span class='spacing' style='font-size: 27px; color: #FF5F00; '>&nbsp ( +" + lowp + "% )" + "</span></div>";
+                        low_item =
+                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp " + market_symbol +
+                         number_commas(low, set_min_decimals, set_max_decimals) + "</span></div>";
+                        lowchange_item =
+                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp &nbsp Low: + " + market_symbol +
+                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
+                        }
 ////////////////////////////////////////////////////////////////////////// 
-high_item = 
- "<span class='spacing'>&nbsp &nbsp " + market_symbol +
- number_commas(high, set_min_decimals, set_max_decimals) +
- "</span>"; 
 
-low_item = 
- "<span class='spacing'>&nbsp &nbsp " + market_symbol +
- number_commas(low, set_min_decimals, set_max_decimals) +
- "</span></div>"; 
-highp_item =
-      "<span class='spacing'>&nbsp ( " +
-      highp + "% )" +
-      "</span>";
-			
-lowp_item = 
- "<span class='spacing'>&nbsp ( +" + lowp + "% )" +
- "</span></div>"; 
-
-highchange_item =
- "<span class='spacing'>&nbsp &nbsp High: - " + market_symbol +
- number_commas(highchange, set_min_decimals, set_max_decimals) +
- "</span>";
-
-lowchange_item =
- "<span class='spacing'>&nbsp &nbsp Low: + " + market_symbol +
- number_commas(lowchange, set_min_decimals, set_max_decimals) +
- "</span></div>";
   
 	if (tickerp > 0){
                         tickerp_item = "<span class='spacing' style='color: #16f30c;'>&nbsp +" + tickerp + "%" + "</span>";
