@@ -137,7 +137,7 @@ var volume_size = 30; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (L
 
 
 // Ticker font size
-var ticker_size = 85; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
+var ticker_size = 70; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
 
 
 // Ticker arrow size RATIO (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
