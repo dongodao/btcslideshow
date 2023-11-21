@@ -527,7 +527,7 @@ market_key = js_safe_key(market_id, exchange);
 	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span  id="ticker_' + market_key + '"></span>'+
     
 //////////////////////////////////////////////////////////////////////////////////
-'<span class="tickerp" style="font-size: '+large+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></div>'+
+'<span class="tickerp" style="font-size: '+large+'px; color: '+tickerpcolor+'; font-weight: '+font_weight+';"><span  id="tickerp_' + market_key + '"></span></div>'+
 
 '<div class="pricechange" style="font-size: '+volume_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span  id="pricechange_' + market_key + '"></span>'+
 '<span class="PCP" style="font-size: '+volume_size+'px; color: #FFB600; font-weight: '+font_weight+';"><span  id="PCP_' + market_key + '"></span>'+
