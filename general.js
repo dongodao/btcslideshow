@@ -522,7 +522,7 @@ market_key = js_safe_key(market_id, exchange);
 
 	html = '<div id="wrapper_' + market_key + '" class="asset_tickers">'+
     
-	'<div class="title" style="font-size: '+title_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></div>'+
+	'<div class="title" style="font-size: '+title_size+'px; color: #b37f00; font-weight: '+font_weight+';"><span id="asset_' + market_key + '">' + asset + '</span> <span class="status_wrapper_'+exchange+'"><span class="parenth_'+market_key+'">(<span class="status status_'+exchange+' status_'+market_key+'">Loading</span>)</span></span></span>'+
 	
 	'<div class="ticker" style="font-size: '+ticker_size+'px; color: #09c; font-weight: '+font_weight+';"><span  id="ticker_' + market_key + '"></span>'+
     
@@ -1039,7 +1039,7 @@ lowchange = parseFloat(lowchange_rounded); // Remove any trailing zeros in decim
         				
 // HTML for rendering
 ticker_item =
-      "<div class='spacing'><div class='arrow_wrapper' style=''><span class='arrow " +
+      "<span class='spacing'><div class='arrow_wrapper' style=''><span class='arrow " +
       trade_side +
       "'></span></div><span class='tick_text'>" + market_symbol +
       number_commas(price, set_min_decimals, set_max_decimals) +
