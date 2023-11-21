@@ -140,7 +140,7 @@ var volume_size = 27; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (L
 var ticker_size = 75; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
 var small = 27;
 var medium = 32;
-var large = 40;
+var large = 37;
 
 // Ticker arrow size RATIO (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
 // THIS #ALREADY AUTO-RESIZES# BASED ON THE TICKER SIZE, SO YOU USUALLY CAN LEAVE THIS
