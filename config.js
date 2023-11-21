@@ -133,12 +133,14 @@ var title_size = 55; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (L
 
 
 // 24 hour volume font size
-var volume_size = 30; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (LARGE SCREEN)
+var volume_size = 27; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (LARGE SCREEN)
 
 
 // Ticker font size
-var ticker_size = 70; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
-
+var ticker_size = 75; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
+var small = 27;
+var medium = 32;
+var large = 40;
 
 // Ticker arrow size RATIO (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
 // THIS #ALREADY AUTO-RESIZES# BASED ON THE TICKER SIZE, SO YOU USUALLY CAN LEAVE THIS
