@@ -505,7 +505,7 @@ titlecolor = "#b37f00";
 }
 
 if ( assetname == "SOL" ) {
-    assetname = "Solana SOL";
+assetname = "Solana SOL";
 titlecolor = "#7fffd4";
 }
 asset = assetname;
@@ -956,7 +956,7 @@ set_max_decimals = dyn_max_decimals(price_raw, market_info);
     // If FIAT value under 100, AND IF set_max_decimals is less than or equal to 2,
     // then force 2 FIXED decimals ALWAYS for #FIAT VALUES# UX
     //////////////////////////////////////////////////////////////
-    if ( price_raw < 1 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
+    if ( price_raw < 1000 && market_info['asset_type'] == 'fiat' && set_max_decimals <= 2 ) {
     /////////////////////////////////////////////////////////////////    
     set_max_decimals = 2; // For number_commas() logic (#MUST# BE RESET HERE TOO, #CANNOT# BE LESS THAN THE MINIMUM!!)
     set_min_decimals = 2; // For number_commas() logic
