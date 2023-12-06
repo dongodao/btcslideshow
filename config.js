@@ -168,7 +168,7 @@ var ticker_min_decimals = 0; // Default = 0
 // (interface examples: one = 10.9, tenth = 10.09, hundredth = 10.009, thousandth = 10.0009)
 // #FIAT# CURRENCY VALUES UNDER 100 #ARE FORCED TO 2 DECIMALS MINUMUM#, UNLESS USING 'thousandth'
 // #ALWAYS# OVERIDDEN BY ticker_min_decimals!
-var ticker_round_percent = 'one'; // (OF A PERCENT) 'one', 'tenth', 'hundredth', 'thousandth'
+var ticker_round_percent = 'tenth'; // (OF A PERCENT) 'one', 'tenth', 'hundredth', 'thousandth'
 ////
 // FORCE a FIXED MINIMUM amount of decimals on ticker price, CALCULATED OFF ABOVE ticker_round_percent SETTING
 // (ALWAYS SAME AMOUNT OF DECIMALS, #EVEN IF IT INCLUDES TRAILING ZEROS#) 
