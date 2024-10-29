@@ -1052,42 +1052,42 @@ ticker_item =
 
         if (highchange > lowchange) {
                         highp_item =
-                         "<span class='spacing' style='font-size: 27px; color: #CCCC00; '>&nbsp ( " + highp + "% )" + "</span>";
+                         "<span class='spacing' style='font-size: 27px; color: #CCCC00; '>&nbsp ( " + highp + "% )" + "</span>";  //60px (1280 x 1024 MONITOR)
                         high_item =
-                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>&nbsp " + market_symbol +
-                         number_commas(high, set_min_decimals, set_max_decimals) + "</span>";
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>&nbsp " + market_symbol +  
+                         number_commas(high, set_min_decimals, set_max_decimals) + "</span>";  //60
                          highchange_item =
-                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>High: - " + market_symbol +
-                         number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
+                         "<span class='spacing' style='font-size: 27px; color: #7F7F00; '>High: - " + market_symbol +  
+                         number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";  //60
 
                         lowp_item =
-                         "<span class='spacing' style='font-size: 37px;'>&nbsp ( +" + lowp + "% )" + "</span></div>";
+                         "<span class='spacing' style='font-size: 37px;'>&nbsp ( +" + lowp + "% )" + "</span></div>";  //90
                         low_item =
-                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +
-                         number_commas(low, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 37px; color: #FFF01F;'> :-(" + "</span></div>";
+                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +  
+                         number_commas(low, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 37px; color: #FFF01F;'> :-(" + "</span></div>";  //70, 90
                         lowchange_item =
-                         "<span class='spacing' style='font-size: 37px;'>Low: + " + market_symbol +
-                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
+                         "<span class='spacing' style='font-size: 37px;'>Low: + " + market_symbol +  
+                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";  //90
                         }
 
         else {
                         highp_item =
-                         "<span class='spacing' style='font-size: 37px;'>&nbsp ( " + highp + "% )" + "</span>";
+                         "<span class='spacing' style='font-size: 37px;'>&nbsp ( " + highp + "% )" + "</span>";  //90
                         high_item =
-                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +
-                         number_commas(high, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 37px; color: #CCFF00;'> :-)" + "</span>";
+                         "<span class='spacing' style='font-size: 32px;'>&nbsp " + market_symbol +  
+                         number_commas(high, set_min_decimals, set_max_decimals) + "</span><span style=' font-size: 37px; color: #CCFF00;'> :-)" + "</span>";  //60, 90
                          highchange_item =
-                         "<span class='spacing' style='font-size: 37px;'>&nbsp &nbsp High: - " + market_symbol +
+                         "<span class='spacing' style='font-size: 37px;'>&nbsp &nbsp High: - " + market_symbol +  //90
                          number_commas(highchange, set_min_decimals, set_max_decimals) + "</span>";
 
                         lowp_item =
-                         "<span class='spacing' style='font-size: 27px; color: #FF5F00; '>&nbsp ( +" + lowp + "% )" + "</span></div>";
+                         "<span class='spacing' style='font-size: 27px; color: #FF5F00; '>&nbsp ( +" + lowp + "% )" + "</span></div>";  //60
                         low_item =
-                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp " + market_symbol +
-                         number_commas(low, set_min_decimals, set_max_decimals) + "</span></div>";
+                         "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp " + market_symbol +  
+                         number_commas(low, set_min_decimals, set_max_decimals) + "</span></div>";  //60
                         lowchange_item =
                          "<span class='spacing' style='font-size: 27px; color: #FF8001; '>&nbsp &nbsp Low: + " + market_symbol +
-                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";
+                         number_commas(lowchange, set_min_decimals, set_max_decimals) + "</span></div>";  //60
                         }
 ////////////////////////////////////////////////////////////////////////// 
 
