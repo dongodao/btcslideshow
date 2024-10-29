@@ -96,17 +96,17 @@ exchange_markets['coingecko'] = '';
 
 
 // Screen orientation (offset in degrees)
-var orient_screen = 180; // Normal (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
+var orient_screen = 180; // HDMI (upright) = 0, Flipped (upside down) = 180, Sideways (left or right) = 90 or 270
 
 
 // Vertical position (adjusts the ticker's vertical position up/down)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var vertical_position = 0; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (LARGE SCREEN)
+var vertical_position = 0; // Default = 37 (SMALL SCREEN), 75 (MEDIUM SCREEN), 150 (1280 x 1024 MONITOR)
 
 
 // Horizontal position (adjusts the ticker's horizontal position left/right)
 // CAN BE NEGATIVE, TO GO THE OPPOSITE WAY
-var horizontal_position = 0; // Default = 10 (SMALL SCREEN), 0 (MEDIUM/LARGE SCREEN)
+var horizontal_position = 0; // Default = 0 (ALL SIZES)
 
 
 // Show exchange name in title (next to asset ticker symbol)
@@ -129,18 +129,18 @@ var system_data_opacity = 0.70;  // Default = 0.70 (#CAN# BE DECIMALS HERE, WITH
 
 
 // Title font size
-var title_size = 55; // Default = 57 (SMALL SCREEN), 115 (MEDIUM SCREEN), 230 (LARGE SCREEN)
+var title_size = 55; // Default = 57 (SMALL SCREEN), 180 (1280 x 1024 MONITOR), 230 (LARGE SCREEN)
 
 
 // 24 hour volume font size
-var volume_size = 27; // Default = 42 (SMALL SCREEN), 84 (MEDIUM SCREEN), 168 (LARGE SCREEN)
+var volume_size = 27; // Default = 42 (SMALL SCREEN), 60 (1280 x 1024 MONITOR), 168 (LARGE SCREEN)
 
 
 // Ticker font size
-var ticker_size = 75; // Default = 80 (SMALL SCREEN), 160 (MEDIUM SCREEN), 320 (LARGE SCREEN)
-var small = 27;
-var medium = 32;
-var large = 37;
+var ticker_size = 75; // Default = 80 (SMALL SCREEN), 160 (1280 x 1024 MONITOR), 320 (LARGE SCREEN)
+var small = 27; //60 (1280 x 1024 MONITOR)
+var medium = 32; //70 (1280 x 1024 MONITOR)
+var large = 37;  //80 (1280 x 1024 MONITOR)
 
 // Ticker arrow size RATIO (to ticker size), DECIMAL NUMBER FORMAT X.XX OF 1.00 OR LESS
 // THIS #ALREADY AUTO-RESIZES# BASED ON THE TICKER SIZE, SO YOU USUALLY CAN LEAVE THIS
